@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Chatdarika — Elegance in Every Pixel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#0a0000',
+                            card: '#140000',
+                            border: '#330000'
+                        },
+                        accent: {
+                            primary: '#ff1a1a',
+                            darkred: '#800000',
+                            orange: '#ff7300',
+                            white: '#ffffff'
+                        }
+                    },
+                    boxShadow: {
+                        'glow-primary': '0 0 15px rgba(255, 26, 26, 0.4)',
+                        'glow-darkred': '0 0 20px rgba(128, 0, 0, 0.6)',
+                        'glow-orange': '0 0 15px rgba(255, 115, 0, 0.3)',
+                        'glow-white': '0 0 18px rgba(255, 255, 255, 0.25)',
+                    },
+                    animation: {
+                        'float-slow': 'float 6s ease-in-out infinite',
+                        'float-med': 'float 4s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 15s linear infinite',
+                        'twinkle': 'twinkle 4s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.8', filter: 'drop-shadow(0 0 6px currentColor)' },
+                            '50%': { opacity: '0.3', filter: 'drop-shadow(0 0 2px currentColor)' },
+                        },
+                        twinkle: {
+                            '0%': { opacity: '0.2', transform: 'scale(0.8)' },
+                            '100%': { opacity: '1', transform: 'scale(1.2)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Mitr', sans-serif !important;
+            background-color: #0a0000;
+            color: #ffffff;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(128, 0, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 26, 26, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 0%, rgba(255, 115, 0, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        .eng-heading {
+            font-family: 'Playfair Display', serif !important;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0000; }
+        ::-webkit-scrollbar-thumb { background: #330000; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff1a1a; }
+
+        .glass-card {
+            background: rgba(20, 0, 0, 0.72);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 26, 26, 0.18);
+        }
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transform: scale(0.95) translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #ff1a1a, #ff7300, #ff1a1a);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            animation: gradientMove 6s linear infinite;
+        }
+        .text-shadow-glow {
+            text-shadow: 0 0 20px rgba(255, 26, 26, 0.5);
+        }
+        @keyframes gradientMove {
+            to { background-position: 200% center; }
+        }
+        .custom-checkbox:checked {
+            background-color: #ff1a1a;
+            border-color: #ff1a1a;
+        }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="antialiased min-h-screen relative overflow-x-hidden selection:bg-accent-primary selection:text-white">
+
+<div class="w-full overflow-x-hidden relative flex flex-col min-h-screen">
+
+    <!-- THEME SVGS: Refined Elegant Background -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <svg class="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="elegant-stars" x="0" y="0" width="150" height="150" patternUnits="userSpaceOnUse">
+                    <path d="M12 2L12.5 10L20 10.5L12.5 11L12 19L11.5 11L4 10.5L11.5 10Z" fill="#ff7300" opacity="0.3" transform="scale(0.5) translate(40, 40)"/>
+                    <circle cx="100" cy="30" r="1" fill="#ff1a1a" opacity="0.5"/>
+                    <path d="M12 2L13 9L20 10L13 11L12 18L11 11L4 10L11 9Z" fill="#fff" opacity="0.15" transform="scale(0.3) translate(350, 300)"/>
+                    <circle cx="20" cy="120" r="1.5" fill="#ff1a1a" opacity="0.2"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#elegant-stars)" />
+        </svg>
+        <svg class="absolute top-16 right-10 md:right-32 w-20 h-20 text-accent-darkred/40 animate-float-slow" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="absolute bottom-32 left-10 w-12 h-12 text-accent-primary/20 animate-pulse-glow" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/>
+        </svg>
+    </div>
+
+    <!-- Quick Navigation Bar -->
+    <nav class="sticky top-3 z-30 max-w-4xl mx-auto px-4 w-full">
+        <div class="glass-card rounded-full px-4 py-2.5 flex items-center justify-between gap-2 border border-accent-primary/30 shadow-glow-darkred text-xs md:text-sm">
+            <a href="#top" class="eng-heading font-bold text-gradient text-base md:text-lg px-2 truncate" id="nav-store-name">Atelier Chatdarika</a>
+            <div class="flex items-center gap-1.5 md:gap-4 text-accent-white/80 overflow-x-auto no-scrollbar">
+                <a href="#queue-section" class="hover:text-accent-primary transition-colors whitespace-nowrap px-2 py-1">คิวงาน</a>
+                <a href="#pricing-section" class="hover:text-accent-primary transition-colors whitespace-nowrap px-2 py-1">แพ็กเกจ</a>
+                <a href="#calculator-section" class="hover:text-accent-orange transition-colors whitespace-nowrap px-2 py-1">คำนวณราคา</a>
+                <a href="#portfolio-section" class="hover:text-accent-primary transition-colors whitespace-nowrap px-2 py-1">ผลงาน</a>
+                <a href="#brief-section" class="bg-accent-primary/20 hover:bg-accent-primary text-white border border-accent-primary/50 px-3 py-1 rounded-full transition-all whitespace-nowrap">ส่งบรีฟ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main id="top" class="max-w-4xl mx-auto px-4 py-10 relative z-10 flex flex-col gap-10 w-full">
+
+        <!-- ========================================================= -->
+        <!-- ส่วนที่ 1: โปรไฟล์ร้านและส่วนหัว -->
+        <!-- ========================================================= -->
+        <header class="text-center space-y-4 relative flex flex-col items-center">
+            <!-- Elegant Logo Section -->
+            <div class="relative w-32 h-32 md:w-40 md:h-40 mb-2 group z-20">
+                <div class="absolute inset-0 bg-accent-primary/15 rounded-full blur-2xl group-hover:bg-accent-primary/25 transition-colors duration-700"></div>
+                <div class="absolute inset-0 border border-accent-white/50 rounded-full animate-spin-slow" style="border-top-color: transparent;"></div>
+                <div class="absolute inset-[-4px] border border-accent-primary/50 rounded-full animate-spin-slow" style="border-bottom-color: transparent; animation-direction: reverse;"></div>
+                
+                <!-- ใส่ลิงก์โลโก้ใหม่ได้ที่นี่ หรือแก้ผ่านระบบหลังบ้าน -->
+                <img 
+                    id="store-logo"
+                    src="https://i.postimg.cc/HLBk00nV/mi-m-ch-x-8-20260408220728.png" 
+                    alt="Atelier Chatdarika Logo" 
+                    class="w-full h-full object-cover rounded-full border-2 border-accent-white/40 shadow-glow-white relative z-10 transition-transform duration-500 group-hover:scale-105"
+                >
+                <svg class="absolute -top-1 -right-2 w-8 h-8 text-accent-white animate-twinkle z-20 drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L13.1 9.9L21 11L13.1 12.1L12 20L10.9 12.1L3 11L10.9 9.9L12 2Z"/>
+                </svg>
+            </div>
+
+            <!-- Store Title -->
+            <div class="relative mt-2">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full scale-[1.2] h-px bg-gradient-to-r from-transparent via-accent-primary/40 to-transparent -z-10"></div>
+                <h1 id="display-store-name" class="eng-heading text-4xl sm:text-5xl md:text-6xl font-bold text-gradient tracking-wider py-1 text-shadow-glow">
+                    Atelier Chatdarika
+                </h1>
+            </div>
+
+            <!-- Slogan Badge -->
+            <div class="inline-flex items-center justify-center gap-3 bg-dark-card/90 backdrop-blur-md px-7 py-3 rounded-full border border-accent-primary/40 shadow-glow-primary relative group z-10 transition-all hover:border-accent-primary/80">
+                <svg class="w-4 h-4 text-accent-orange animate-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+                <p id="display-slogan" class="eng-heading text-lg md:text-xl italic text-accent-white tracking-widest">
+                    Elegance in Every Pixel
+                </p>
+                <svg class="w-4 h-4 text-accent-primary animate-pulse" style="animation-delay: 1s;" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+            </div>
+            
+            <!-- Store Bio / Intro -->
+            <div class="mt-4 text-accent-white/85 text-[15px] max-w-2xl mx-auto leading-relaxed glass-card p-6 rounded-2xl relative">
+                <div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-accent-orange/60 rounded-tl-xl"></div>
+                <div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-accent-primary/60 rounded-br-xl"></div>
+                <p id="display-bio" class="font-light leading-7">
+                    สวัสดีค่ะ ยินดีที่ได้รู้จักกับฉัตรดาริกานะคะ เราตั้งใจทำเว็บให้เป็นเรื่องง่ายสำหรับเจ้าของร้านทุกคน ไม่ว่าคุณจะยังไม่เคยมีเว็บไซต์มาก่อนหรือยังไม่มีไอเดียในหัว สามารถทักมาพูดคุยปรึกษากับฉัตรดาริกาได้เลยค่า
+                </p>
+            </div>
+
+            <!-- Contact Channels -->
+            <div class="flex flex-wrap justify-center gap-3 pt-2">
+                <a id="link-line" href="https://line.me/ti/p/Kx_-mwhVam" target="_blank" rel="noopener" class="flex items-center gap-2.5 px-6 py-3 rounded-full border border-accent-orange/60 bg-dark-card/90 text-accent-orange hover:bg-accent-orange hover:text-white hover:shadow-glow-orange transition-all text-[15px] font-medium group">
+                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 3.972 8.948 9.387 9.619.385.083.91.258 1.042.593.118.3.076.77.037 1.054l-.168 1.002c-.053.315-.246 1.253 1.098.686 1.344-.567 7.243-4.265 9.715-7.147 1.942-2.27 2.889-4.043 2.889-5.807z"/></svg>
+                    <span>ทักแชต LINE</span>
+                </a>
+                <a id="link-facebook" href="https://www.facebook.com/profile.php?id=61596551593901" target="_blank" rel="noopener" class="flex items-center gap-2.5 px-6 py-3 rounded-full border border-accent-primary/60 bg-dark-card/90 text-accent-white hover:bg-accent-primary hover:text-white hover:shadow-glow-primary transition-all text-[15px] font-medium group">
+                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform text-accent-primary group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    <span id="display-fb-name">Facebook: Atelier Chatdarika</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- ========================================================= -->
+        <!-- ส่วนที่ 2: สถานะคิวรับงานสด -->
+        <!-- ========================================================= -->
+        <section id="queue-section" class="glass-card p-6 md:p-7 rounded-3xl border border-accent-primary/40 shadow-glow-darkred relative overflow-hidden">
+            <div class="absolute -right-12 -top-12 w-40 h-40 bg-accent-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-accent-primary/20">
+                <div class="flex items-center gap-3">
+                    <span class="relative flex h-3.5 w-3.5">
+                        <span id="queue-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span id="queue-dot" class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
+                    </span>
+                    <h2 class="text-lg md:text-xl font-medium text-white tracking-wide">สถานะคิวรับงานสด</h2>
+                </div>
+                <span id="queue-badge" class="self-start sm:self-auto px-4 py-1 rounded-full text-xs md:text-sm font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                    เปิดรับงานปกติ
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+                <div class="bg-black/50 border border-white/10 rounded-2xl p-4 flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-accent-primary/15 border border-accent-primary/30 flex items-center justify-center text-accent-primary shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-accent-white/60">จำนวนคิวว่าง</p>
+                        <p id="queue-slots" class="text-base md:text-lg font-semibold text-white">ว่าง 3 คิว</p>
+                    </div>
+                </div>
+
+                <div class="bg-black/50 border border-white/10 rounded-2xl p-4 flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-accent-orange/15 border border-accent-orange/30 flex items-center justify-center text-accent-orange shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-accent-white/60">กำหนดส่งงานโดยประมาณ</p>
+                        <p id="queue-delivery" class="text-base md:text-lg font-semibold text-white">ประมาณ 2–4 วัน (หลังได้รับข้อมูลครบและชำระเงิน)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-accent-darkred/30 to-black/50 border border-accent-primary/25 rounded-2xl p-4 text-[14.5px] text-accent-white/90 flex items-start gap-3">
+                <svg class="w-5 h-5 text-accent-orange shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+                <p id="queue-announcement" class="leading-relaxed">
+                    "เปิดรับคิวออกแบบเว็บไซต์รอบใหม่แล้วค่ะ ทักแชทส่งบรีฟหรือกดคำนวณราคาด้านล่างเพื่อสอบถามคิวก่อนได้เลยนะคะ"
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- ส่วนที่ 3: รายละเอียดแพ็กเกจ ราคา และบริการเสริม -->
+        <!-- ========================================================= -->
+        <section id="pricing-section" class="space-y-6">
+            <div class="text-center space-y-1">
+                <h2 class="eng-heading text-3xl md:text-4xl text-gradient font-bold">Packages & Pricing</h2>
+                <p class="text-sm text-accent-white/70">เลือกแพ็กเกจที่เหมาะกับร้านของคุณ</p>
+            </div>
+
+            <!-- Main Packages -->
+            <div>
+                <h3 class="text-lg font-medium text-accent-primary mb-4 flex items-center gap-2.5">
+                    <span class="w-1.5 h-5 bg-accent-primary rounded-full"></span>
+                    Main Package (เว็บไซต์หลัก)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <!-- Basic -->
+                    <div class="glass-card p-6 rounded-2xl border-t-2 border-t-white/40 flex flex-col justify-between hover:border-accent-primary/50 transition-all">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <span class="text-xs uppercase tracking-widest text-accent-white/60 eng-heading">Starter</span>
+                                    <h4 class="text-xl font-semibold text-white">Basic</h4>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-accent-white/60 block">เริ่มต้น</span>
+                                    <span class="text-3xl font-bold text-accent-orange"><span id="price-basic">129</span> ฿</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-2.5 text-sm text-accent-white/85 border-t border-white/10 pt-4">
+                                <li class="flex items-start gap-2"><span class="text-accent-primary">✦</span> เว็บหน้าเดียว ดีไซน์สวยอ่านง่าย</li>
+                                <li class="flex items-start gap-2"><span class="text-accent-primary">✦</span> ลงข้อมูลไม่เกิน 8 รายการ</li>
+                                <li class="flex items-start gap-2"><span class="text-accent-primary">✦</span> แก้ไขฟรี 1 ครั้ง</li>
+                            </ul>
+                        </div>
+                        <button onclick="selectPackageForCalc('main', 'basic')" class="mt-5 w-full py-2.5 rounded-xl bg-white/5 hover:bg-accent-primary/20 border border-white/15 hover:border-accent-primary text-sm text-white transition-all">
+                            เลือกคำนวณแพ็กเกจนี้
+                        </button>
+                    </div>
+
+                    <!-- Standard -->
+                    <div class="glass-card p-6 rounded-2xl border-2 border-accent-primary/60 shadow-glow-primary flex flex-col justify-between relative">
+                        <span class="absolute -top-3 right-5 bg-gradient-to-r from-accent-primary to-accent-orange text-white text-[11px] font-semibold px-3 py-0.5 rounded-full tracking-wider uppercase">
+                            แนะนำ
+                        </span>
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <span class="text-xs uppercase tracking-widest text-accent-orange eng-heading">Popular</span>
+                                    <h4 class="text-xl font-semibold text-white">Standard</h4>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-accent-white/60 block">เริ่มต้น</span>
+                                    <span class="text-3xl font-bold text-accent-primary"><span id="price-standard">199</span> ฿</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-2.5 text-sm text-accent-white/90 border-t border-white/10 pt-4">
+                                <li class="flex items-start gap-2"><span class="text-accent-orange">✦</span> เพิ่มระบบหลังบ้านแอดมิน</li>
+                                <li class="flex items-start gap-2"><span class="text-accent-orange">✦</span> ลูกเล่นโต้ตอบ 1 อย่าง</li>
+                                <li class="flex items-start gap-2"><span class="text-accent-orange">✦</span> ลงข้อมูลไม่เกิน 15 รายการ</li>
+                                <li class="flex items-start gap-2"><span class="text-accent-orange">✦</span> แก้ไขฟรี 2 ครั้ง</li>
+                            </ul>
+                        </div>
+                        <button onclick="selectPackageForCalc('main', 'standard')" class="mt-5 w-full py-2.5 rounded-xl bg-accent-primary hover:bg-accent-primary/80 text-sm font-medium text-white shadow-glow-primary transition-all">
+                            เลือกคำนวณแพ็กเกจนี้
+                        </button>
+                    </div>
+
+                    <!-- Pro (Custom) -->
+                    <div class="glass-card p-6 rounded-2xl border-t-2 border-t-accent-orange flex flex-col justify-between hover:border-accent-orange/60 transition-all">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <span class="text-xs uppercase tracking-widest text-accent-orange eng-heading">Full Custom</span>
+                                    <h4 class="text-xl font-semibold text-white">Pro (Custom)</h4>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-accent-white/60 block">เริ่มต้น</span>
+                                    <span class="text-3xl font-bold text-accent-orange"><span id="price-pro">299</span> ฿</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-2.5 text-sm text-accent-white/85 border-t border-white/10 pt-4">
+                                <li class="flex items-start gap-2"><span class="text-accent-primary">✦</span> คัสต้อมดีไซน์/โครงสร้างตามสั่ง</li>
+                                <li class="flex items-start gap-2"><span class="text-accent-primary">✦</span> หลังบ้านครบ + สำรองข้อมูล</li>
+                                <li class="flex items-start gap-2"><span class="text-accent-primary">✦</span> ฟีเจอร์พิเศษตามต้องการ</li>
+                                <li class="flex items-start gap-2"><span class="text-accent-primary">✦</span> ลงข้อมูลไม่เกิน 25 รายการ</li>
+                                <li class="flex items-start gap-2"><span class="text-accent-primary">✦</span> แก้ไขฟรี 3 ครั้ง</li>
+                            </ul>
+                        </div>
+                        <button onclick="selectPackageForCalc('main', 'pro')" class="mt-5 w-full py-2.5 rounded-xl bg-white/5 hover:bg-accent-orange/20 border border-white/15 hover:border-accent-orange text-sm text-white transition-all">
+                            เลือกคำนวณแพ็กเกจนี้
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Add-ons -->
+                <div class="glass-card p-5 rounded-2xl mt-4 border border-white/10">
+                    <h4 class="text-sm font-medium text-accent-orange mb-3 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+                        บริการเสริมสำหรับ Main Package (Add-ons)
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 text-xs md:text-sm text-accent-white/85">
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-white/5 flex justify-between">
+                            <span>เพิ่มระบบหลังบ้าน</span>
+                            <span class="text-accent-orange font-medium">+<span id="addon-main-admin">99</span> ฿</span>
+                        </div>
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-white/5 flex justify-between">
+                            <span>เพิ่มรายการ (เหมา 10 รายการ)</span>
+                            <span class="text-accent-orange font-medium">+<span id="addon-main-items">39</span> ฿</span>
+                        </div>
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-white/5 flex justify-between">
+                            <span>เพิ่มลูกเล่นโต้ตอบ</span>
+                            <span class="text-accent-orange font-medium">+<span id="addon-main-inter">59</span> ฿</span>
+                        </div>
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-white/5 flex justify-between">
+                            <span>คิวงานด่วน</span>
+                            <span class="text-accent-orange font-medium">+<span id="addon-main-rush">79</span> ฿</span>
+                        </div>
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-white/5 flex justify-between">
+                            <span>แก้ไขเพิ่ม</span>
+                            <span class="text-accent-orange font-medium">+<span id="addon-main-edit">30</span> ฿/ครั้ง</span>
+                        </div>
+                        <div class="bg-black/40 p-2.5 rounded-xl border border-white/5 flex justify-between">
+                            <span>ช่วยคิดข้อความ</span>
+                            <span class="text-accent-orange font-medium">+<span id="addon-main-copy">49</span> ฿</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Packages -->
+            <div class="pt-2">
+                <h3 class="text-lg font-medium text-accent-orange mb-4 flex items-center gap-2.5">
+                    <span class="w-1.5 h-5 bg-accent-orange rounded-full"></span>
+                    Mini Package (เว็บเฉพาะทางราคาเบาๆ)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="glass-card p-5 rounded-2xl border border-white/10 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="font-medium text-white">เว็บช่องทางการติดต่อ</h4>
+                            <span class="text-2xl font-bold text-accent-orange"><span id="price-mini-contact">59</span> ฿</span>
+                        </div>
+                        <p class="text-xs text-accent-white/70 mb-4">รวมลิงก์ LINE, Facebook, IG, TikTok ไว้ในหน้าเดียว กดง่ายดูโปร</p>
+                        <button onclick="selectPackageForCalc('mini', 'contact')" class="w-full py-2 rounded-xl bg-white/5 hover:bg-accent-orange/20 border border-white/15 hover:border-accent-orange text-xs text-white transition-all">
+                            เลือกคำนวณมินิเว็บนี้
+                        </button>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl border border-white/10 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="font-medium text-white">เว็บช่องทางการชำระเงิน</h4>
+                            <span class="text-2xl font-bold text-accent-orange"><span id="price-mini-payment">69</span> ฿</span>
+                        </div>
+                        <p class="text-xs text-accent-white/70 mb-4">ป้ายบัญชี พร้อมเพย์ QR Code สะอาดตา โอนง่ายไม่พลาด</p>
+                        <button onclick="selectPackageForCalc('mini', 'payment')" class="w-full py-2 rounded-xl bg-white/5 hover:bg-accent-orange/20 border border-white/15 hover:border-accent-orange text-xs text-white transition-all">
+                            เลือกคำนวณมินิเว็บนี้
+                        </button>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl border border-white/10 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="font-medium text-white">เว็บเก็บรีวิวและเครดิต</h4>
+                            <span class="text-2xl font-bold text-accent-orange"><span id="price-mini-review">79</span> ฿</span>
+                        </div>
+                        <p class="text-xs text-accent-white/70 mb-4">รวบรวมรีวิวลูกค้าจริง เพิ่มความน่าเชื่อถือให้ร้านค้า</p>
+                        <button onclick="selectPackageForCalc('mini', 'review')" class="w-full py-2 rounded-xl bg-white/5 hover:bg-accent-orange/20 border border-white/15 hover:border-accent-orange text-xs text-white transition-all">
+                            เลือกคำนวณมินิเว็บนี้
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mini Add-ons -->
+                <div class="glass-card p-5 rounded-2xl mt-4 border border-white/10">
+                    <h4 class="text-sm font-medium text-accent-primary mb-3 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+                        บริการเสริมสำหรับ Mini Package (Add-ons)
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm text-accent-white/85">
+                        <div class="bg-black/40 p-3 rounded-xl border border-white/5">
+                            <div class="flex justify-between font-medium text-white mb-1">
+                                <span>ปุ่มคัดลอกข้อความอัตโนมัติ (Copy Button)</span>
+                                <span class="text-accent-primary">+<span id="addon-mini-copy">19</span> ฿</span>
+                            </div>
+                            <p class="text-xs text-accent-white/60">เช่น กดปุ่มเดียวแล้วคัดลอกเลขบัญชี พร้อมเพย์ เบอร์โทร หรือข้อความทักแชตได้ทันที</p>
+                        </div>
+                        <div class="bg-black/40 p-3 rounded-xl border border-white/5">
+                            <div class="flex justify-between font-medium text-white mb-1">
+                                <span>ทำเป็นหลายหน้า / เชื่อมลิงก์หากัน</span>
+                                <span class="text-accent-primary">+<span id="addon-mini-link">39</span> ฿</span>
+                            </div>
+                            <p class="text-xs text-accent-white/60">เช่น สั่งทำทั้งช่องทางติดต่อ + ช่องทางชำระเงิน แล้วให้มีปุ่มกดสลับเชื่อมถึงกันได้สะดวก</p>
+                        </div>
+                        <div class="bg-black/40 p-3 rounded-xl border border-white/5">
+                            <div class="flex justify-between font-medium text-white mb-1">
+                                <span>คิวงานด่วน</span>
+                                <span class="text-accent-primary">+<span id="addon-mini-rush">39</span> ฿</span>
+                            </div>
+                            <p class="text-xs text-accent-white/60">ลัดคิวจัดทำเร่งด่วนสำหรับงานมินิแพ็กเกจ</p>
+                        </div>
+                        <div class="bg-black/40 p-3 rounded-xl border border-white/5">
+                            <div class="flex justify-between font-medium text-white mb-1">
+                                <span>แก้ไขเพิ่มเติม (หลังส่งมอบ)</span>
+                                <span class="text-accent-primary">+<span id="addon-mini-edit">20</span> ฿ / ครั้ง</span>
+                            </div>
+                            <p class="text-xs text-accent-white/60">กรณีเปลี่ยนข้อมูลทีหลัง เช่น เปลี่ยนเลขบัญชี รูป QR หรือเพิ่มลิงก์โซเชียลใหม่</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Freebies Note -->
+            <div class="bg-gradient-to-r from-accent-darkred/40 via-accent-primary/15 to-accent-darkred/40 border border-accent-primary/40 rounded-2xl p-4 text-center text-sm">
+                <span class="text-accent-orange font-semibold">✦ สิ่งที่แถมฟรีในทุกแพ็กเกจ:</span>
+                <span class="text-white ml-1">โฮสติ้งฟรีไม่มีรายเดือน • รองรับทุกหน้าจอ (มือถือ/แท็บเล็ต/คอม) • ปุ่มลิงก์แชต</span>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- ส่วนที่ 4: เครื่องคำนวณราคาเบื้องต้น (Interactive Quote Calculator) -->
+        <!-- ========================================================= -->
+        <section id="calculator-section" class="glass-card p-6 md:p-8 rounded-3xl border border-accent-orange/40 shadow-glow-orange relative">
+            <div class="text-center mb-6">
+                <span class="text-xs uppercase tracking-widest text-accent-orange eng-heading">Interactive Quote Calculator</span>
+                <h2 class="text-2xl md:text-3xl font-semibold text-white mt-1">เครื่องคำนวณราคาเบื้องต้น</h2>
+                <p class="text-xs md:text-sm text-accent-white/70 mt-1">เลือกประเภทแพ็กเกจและบริการเสริมที่ต้องการ ระบบจะแยกหมวดหมู่และสรุปยอดให้อัตโนมัติค่ะ</p>
+            </div>
+
+            <!-- Mode Tabs (แยก Main กับ Mini ชัดเจน) -->
+            <div class="grid grid-cols-2 gap-2 p-1.5 bg-black/60 rounded-2xl border border-white/10 mb-6">
+                <button type="button" id="tab-calc-main" onclick="switchCalcMode('main')" class="py-2.5 px-4 rounded-xl text-sm font-medium bg-accent-primary text-white shadow-glow-primary transition-all">
+                    Main Package (เว็บหลัก)
+                </button>
+                <button type="button" id="tab-calc-mini" onclick="switchCalcMode('mini')" class="py-2.5 px-4 rounded-xl text-sm font-medium text-accent-white/70 hover:text-white transition-all">
+                    Mini Package (เว็บเฉพาะทาง)
+                </button>
+            </div>
+
+            <!-- MAIN PACKAGE CALCULATOR PANEL -->
+            <div id="calc-panel-main" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-accent-primary mb-3">1. เลือกแพ็กเกจหลัก (เลือกได้ 1 แพ็กเกจ)</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="calc-main-packages"></div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-accent-orange mb-3">2. บริการเสริมสำหรับ Main Package (ไม่บังคับเลือก)</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="calc-main-addons"></div>
+                </div>
+            </div>
+
+            <!-- MINI PACKAGE CALCULATOR PANEL -->
+            <div id="calc-panel-mini" class="space-y-6 hidden">
+                <div>
+                    <label class="block text-sm font-medium text-accent-orange mb-3">1. เลือกมินิแพ็กเกจ (ติ๊กเลือกได้ 1 หรือหลายรายการ)</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="calc-mini-packages"></div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-accent-primary mb-3">2. บริการเสริมสำหรับ Mini Package (ไม่บังคับเลือก)</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="calc-mini-addons"></div>
+                </div>
+            </div>
+
+            <!-- Quote Summary Box -->
+            <div class="mt-7 bg-black/70 border border-accent-primary/40 rounded-2xl p-5 space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-4">
+                    <div>
+                        <p class="text-xs text-accent-white/60">ยอดประเมินราคาเบื้องต้น</p>
+                        <p id="calc-deposit-note" class="text-xs text-accent-orange mt-0.5">เงื่อนไขชำระเงิน: ยอดต่ำกว่า 200 บาท ชำระเต็มจำนวน</p>
+                    </div>
+                    <div class="text-right">
+                        <span id="calc-total-price" class="text-4xl font-bold text-gradient">129 ฿</span>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-xs text-accent-white/60 mb-1.5">รายการที่เลือก:</p>
+                    <pre id="calc-summary-text" class="text-xs md:text-sm text-accent-white/90 bg-dark-card/90 p-3.5 rounded-xl border border-white/10 whitespace-pre-wrap font-sans leading-relaxed"></pre>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button type="button" onclick="copyQuoteSummary()" class="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-accent-primary to-accent-orange text-white font-medium text-sm shadow-glow-primary hover:opacity-95 transition-all flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                        <span id="copy-quote-btn-text">คัดลอกสรุปรายการส่งเข้าแชต</span>
+                    </button>
+                    <button type="button" onclick="sendQuoteToBrief()" class="py-3 px-5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm transition-all">
+                        นำข้อมูลไปกรอกฟอร์มบรีฟ ↓
+                    </button>
+                </div>
+
+                <div class="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs md:text-sm">
+                    <span class="text-accent-white/80">หากไม่แน่ใจสามารถติดต่อปรึกษากับฉัตรดาริกาได้เลยค่ะ</span>
+                    <a id="calc-chat-link" href="https://line.me/ti/p/Kx_-mwhVam" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-accent-orange/20 hover:bg-accent-orange text-accent-orange hover:text-white border border-accent-orange/50 transition-all font-medium whitespace-nowrap">
+                        ทักแชตปรึกษาเลย →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- ส่วนที่ 5: ตัวอย่างผลงาน (Portfolio / Live Demo) -->
+        <!-- ========================================================= -->
+        <section id="portfolio-section" class="space-y-6">
+            <div class="text-center space-y-1">
+                <h2 class="eng-heading text-3xl md:text-4xl text-accent-primary font-bold flex items-center justify-center gap-3">
+                    <svg class="w-5 h-5 text-accent-orange animate-pulse-glow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+                    Portfolio & Live Demo
+                    <svg class="w-5 h-5 text-accent-orange animate-pulse-glow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+                </h2>
+                <p class="text-sm text-accent-white/70">ตัวอย่างผลงานและแนวทางการออกแบบเว็บไซต์ (กดดูตัวอย่างจริงได้ทันที)</p>
+            </div>
+
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- ส่วนที่ 6: ขั้นตอนการสั่งทำ กฎทางร้าน และฟอร์มบรีฟงาน -->
+        <!-- ========================================================= -->
+        <section id="process-terms-section" class="space-y-6">
+            <!-- ขั้นตอนและระยะเวลาการสั่งทำ -->
+            <div class="glass-card p-6 md:p-7 rounded-3xl border-t-2 border-t-accent-primary">
+                <h2 class="text-xl md:text-2xl font-semibold text-white mb-5 flex items-center gap-3">
+                    <span class="w-1.5 h-6 bg-accent-primary rounded-full"></span>
+                    ขั้นตอนและระยะเวลาการสั่งทำ
+                </h2>
+
+                <div class="space-y-4 text-sm md:text-[15px]">
+                    <div class="flex gap-4 bg-black/40 p-4 rounded-2xl border border-white/5">
+                        <div class="eng-heading text-xl font-bold text-accent-primary shrink-0">01</div>
+                        <div>
+                            <h3 class="font-medium text-white">ส่งบรีฟและเช็กคิวงาน</h3>
+                            <p class="text-accent-white/75 text-xs md:text-sm mt-1">ลูกค้ากรอกแบบฟอร์มบรีฟ แจ้งแพ็กเกจ (Basic / Standard / Pro หรือมินิแพ็กเกจ) บริการเสริมที่ต้องการ และโทนสี/สไตล์ที่อยากได้ พร้อมตรวจสอบสถานะคิวว่างหน้าร้าน</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 bg-black/40 p-4 rounded-2xl border border-white/5">
+                        <div class="eng-heading text-xl font-bold text-accent-orange shrink-0">02</div>
+                        <div>
+                            <h3 class="font-medium text-white">ยืนยันใบสรุปงานและชำระเงิน</h3>
+                            <p class="text-accent-white/75 text-xs md:text-sm mt-1">ทางร้านสรุปรายละเอียดและยอดรวมให้ตรวจสอบ โดยยอดรวม <span class="text-white font-medium">ต่ำกว่า 200 บาท ชำระเต็มจำนวน</span> และยอดรวม <span class="text-accent-orange font-medium">200 บาทขึ้นไป ชำระมัดจำ 50%</span> (ส่วนที่เหลือชำระก่อนส่งมอบลิงก์ใช้งานจริง)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 bg-black/40 p-4 rounded-2xl border border-white/5">
+                        <div class="eng-heading text-xl font-bold text-accent-primary shrink-0">03</div>
+                        <div>
+                            <h3 class="font-medium text-white">ขึ้นโครงสร้างและจัดวางหน้าเว็บ</h3>
+                            <p class="text-accent-white/75 text-xs md:text-sm mt-1">ทางร้านลงมือออกแบบ จัดหน้า จัดวางรายการ/ข้อมูลตามโควตาแพ็กเกจ และตั้งค่าลูกเล่นหรือระบบหลังบ้านตามที่ตกลงกัน (ระยะเวลาโดยประมาณ 2–4 วัน นับจากได้รับข้อมูลครบและยืนยันการชำระเงิน)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 bg-black/40 p-4 rounded-2xl border border-white/5">
+                        <div class="eng-heading text-xl font-bold text-accent-orange shrink-0">04</div>
+                        <div>
+                            <h3 class="font-medium text-white">ตรวจงานและปรับแก้ตามโควตา</h3>
+                            <p class="text-accent-white/75 text-xs md:text-sm mt-1">ส่งลิงก์ตัวอย่างให้ลูกค้าตรวจสอบความเรียบร้อยและแจ้งจุดที่ต้องการปรับแก้ภายในโควตาของแพ็กเกจ (Basic แก้ฟรี 1 ครั้ง / Standard แก้ฟรี 2 ครั้ง / Pro แก้ฟรี 3 ครั้ง)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 bg-black/40 p-4 rounded-2xl border border-white/5">
+                        <div class="eng-heading text-xl font-bold text-accent-primary shrink-0">05</div>
+                        <div>
+                            <h3 class="font-medium text-white">ชำระยอดคงเหลือและรับลิงก์พร้อมใช้งาน</h3>
+                            <p class="text-accent-white/75 text-xs md:text-sm mt-1">ชำระยอดส่วนที่เหลือ (กรณีมัดจำ) และรับลิงก์เว็บไซต์พร้อมใช้งานทันที พร้อมรับประกันแก้ไขข้อผิดพลาดที่เกิดจากโค้ดของทางร้านฟรี 7 วัน หลังส่งมอบงาน</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mt-4 text-xs text-accent-white/65 bg-accent-darkred/20 border border-accent-darkred/40 p-3.5 rounded-xl leading-relaxed">
+                    <span class="text-accent-orange font-medium">หมายเหตุระยะเวลา:</span> ระยะเวลา 2–4 วัน เป็นระยะเวลาโดยประมาณสำหรับงานมาตรฐาน ทั้งนี้ขึ้นอยู่กับความซับซ้อนของลูกเล่น/ฟีเจอร์พิเศษ คิวงาน ณ ขณะนั้น ความครบถ้วนของข้อมูลที่ลูกค้าส่ง และการใช้บริการคิวงานด่วน
+                </p>
+            </div>
+
+            <!-- กฎทางร้านและข้อตกลงการจ้างงาน (Terms & Conditions) -->
+            <div class="glass-card p-6 md:p-7 rounded-3xl border-t-2 border-t-accent-darkred">
+                <h2 class="text-xl md:text-2xl font-semibold text-white mb-4 flex items-center gap-3">
+                    <span class="w-1.5 h-6 bg-accent-darkred rounded-full"></span>
+                    กฎทางร้านและข้อตกลงการจ้างงาน <span class="eng-heading text-base text-accent-primary font-normal">(Terms & Conditions)</span>
+                </h2>
+                <ul class="space-y-3 text-xs md:text-sm text-accent-white/85 leading-relaxed">
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-accent-primary mt-0.5">✦</span>
+                        <span><strong class="text-white">การจองคิวและชำระเงิน:</strong> เริ่มลงมือสร้างเว็บไซต์หลังจากได้รับยอดชำระตามเงื่อนไข (<span class="text-white">ต่ำกว่า 200 บาท ชำระเต็มจำนวน / 200 บาทขึ้นไป ชำระมัดจำ 50%</span>) และขอสงวนสิทธิ์ไม่คืนเงินมัดจำหากลูกค้าขอยกเลิกงานหลังจากเริ่มขึ้นโครงสร้างแล้วนะคะ</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-accent-primary mt-0.5">✦</span>
+                        <span><strong class="text-white">การแก้ไขงาน (Revisions):</strong> <span class="text-accent-orange">แก้ไขฟรีตามโควตาของแต่ละแพ็กเกจ</span> (เช่น ปรับโทนสี เปลี่ยนรูปภาพ แก้ไขข้อความ หรือคำผิด) หากต้องการแก้เกินจำนวนครั้งที่กำหนด หรือขอเปลี่ยนโครงสร้าง/ดีไซน์ใหม่ทั้งหมดหลังจากตกลงแบบไปแล้ว จะมีค่าบริการเพิ่มเติมตามความยากง่ายค่ะ</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-accent-primary mt-0.5">✦</span>
+                        <span><strong class="text-white">การส่งข้อมูลและการสื่อสาร:</strong> ลูกค้าต้องเตรียมข้อมูลหลัก (ชื่อร้าน ข้อความ รูปภาพ และช่องทางติดต่อ) ให้ครบถ้วนเพื่อความรวดเร็วนะคะ หากส่งข้อมูลล่าช้าหรือตอบกลับช้า ระยะเวลาส่งมอบงานจะเลื่อนออกไปตามจริงค่ะ</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-accent-primary mt-0.5">✦</span>
+                        <span><strong class="text-white">ข้อจำกัดของระบบและโฮสติ้ง:</strong> ทางร้านส่งมอบงานเป็นลิงก์เว็บไซต์พร้อมใช้งานผ่านโฮสติ้งฟรี (ไม่มีค่าเช่ารายเดือน และไม่รวมไฟล์โค้ดต้นฉบับ) โดยความเสถียรของการเปิดใช้งานลิงก์ขึ้นอยู่กับผู้ให้บริการโฮสติ้งฟรีนั้นๆ สำหรับเว็บที่มีแผงควบคุมแอดมิน ข้อมูลที่แก้ไขจะถูกบันทึกในเบราว์เซอร์ของอุปกรณ์ที่เปิดใช้งาน หากล้างข้อมูลเบราว์เซอร์หรือเปลี่ยนเครื่อง ข้อมูลในเครื่องนั้นอาจรีเซ็ตกลับเป็นค่าเริ่มต้นได้ หากต้องการอัปเดตข้อมูลหรือให้ทางร้านช่วยจัดการเพิ่มเติมสามารถแจ้งตามเรทค่าบริการของร้านได้ และกรณีต้องการชื่อโดเมนส่วนตัว (เช่น .com / .shop) ลูกค้าเป็นผู้รับผิดชอบค่าจดโดเมนเองค่ะ</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-accent-primary mt-0.5">✦</span>
+                        <span><strong class="text-white">การดูแลหลังส่งมอบ:</strong> รับประกันแก้ไขจุดผิดพลาดหรือบั๊กที่เกิดจากระบบภายใน 7 วัน หลังส่งมอบงานเรียบร้อยแล้ว (ไม่รวมการขอเปลี่ยนข้อความ รูปภาพ หรือโครงสร้างใหม่) หากพ้นระยะเวลาประกัน หรือต้องการปรับแก้ข้อมูลเพิ่มเติม คิดค่าบริการเริ่มต้นครั้งละ 20 ฿ ค่ะ</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- แบบฟอร์มบรีฟงานเว็บไซต์ (Interactive Brief Form) -->
+            <div id="brief-section" class="glass-card p-6 md:p-8 rounded-3xl border border-accent-primary/50 shadow-glow-darkred">
+                <div class="text-center mb-6">
+                    <span class="text-xs tracking-widest text-accent-primary uppercase eng-heading">Project Brief Form</span>
+                    <h2 class="text-xl md:text-2xl font-semibold text-white mt-1">✦ แบบฟอร์มบรีฟงานเว็บไซต์ — <span id="brief-store-title">Atelier Chatdarika</span> ✦</h2>
+                    <p class="text-xs md:text-sm text-accent-white/70 mt-1">กรอกรายละเอียดด้านล่างแล้วกดคัดลอกส่งเข้าแชต LINE หรือ Facebook ได้เลยค่ะ</p>
+                </div>
+
+                <form id="brief-form" class="space-y-5 text-sm">
+                    <!-- 1 -->
+                    <div>
+                        <label class="block text-white font-medium mb-1.5">1. ชื่อร้าน / แบรนด์ / หัวข้อหลักของเว็บ <span class="text-accent-primary">*</span></label>
+                        <input type="text" id="brief-brand" placeholder="เช่น ร้านขนมหวานบ้านฉัตร / รับวาดภาพประกอบ" class="w-full bg-black/60 border border-white/15 focus:border-accent-primary rounded-xl px-4 py-3 text-white outline-none transition-colors">
+                    </div>
+
+                    <!-- 2 -->
+                    <div>
+                        <label class="block text-white font-medium mb-2">2. แพ็กเกจที่สนใจ <span class="text-accent-primary">*</span></label>
+                        <div class="space-y-2.5">
+                            <label class="flex items-start gap-3 bg-black/50 p-3 rounded-xl border border-white/10 cursor-pointer hover:border-accent-primary/50">
+                                <input type="radio" name="brief-pkg" value="Basic (เริ่มต้น 129 ฿ — เว็บหน้าเดียว / ไม่เกิน 8 รายการ / แก้ฟรี 1 ครั้ง)" checked class="mt-1 accent-[#ff1a1a]">
+                                <span id="brief-label-basic">Basic (เริ่มต้น 129 ฿ — เว็บหน้าเดียว / ไม่เกิน 8 รายการ / แก้ฟรี 1 ครั้ง)</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-black/50 p-3 rounded-xl border border-white/10 cursor-pointer hover:border-accent-primary/50">
+                                <input type="radio" name="brief-pkg" value="Standard (เริ่มต้น 199 ฿ — หลังบ้าน + ลูกเล่น 1 อย่าง / ไม่เกิน 15 รายการ / แก้ฟรี 2 ครั้ง)" class="mt-1 accent-[#ff1a1a]">
+                                <span id="brief-label-standard">Standard (เริ่มต้น 199 ฿ — หลังบ้าน + ลูกเล่น 1 อย่าง / ไม่เกิน 15 รายการ / แก้ฟรี 2 ครั้ง)</span>
+                            </label>
+                            <label class="flex items-start gap-3 bg-black/50 p-3 rounded-xl border border-white/10 cursor-pointer hover:border-accent-primary/50">
+                                <input type="radio" name="brief-pkg" value="Pro / Custom (เริ่มต้น 299 ฿ — คัสต้อมตามสั่ง / หลังบ้านครบ + ฟีเจอร์พิเศษ / ไม่เกิน 25 รายการ / แก้ฟรี 3 ครั้ง)" class="mt-1 accent-[#ff1a1a]">
+                                <span id="brief-label-pro">Pro / Custom (เริ่มต้น 299 ฿ — คัสต้อมตามสั่ง / หลังบ้านครบ + ฟีเจอร์พิเศษ / ไม่เกิน 25 รายการ / แก้ฟรี 3 ครั้ง)</span>
+                            </label>
+                            <div class="bg-black/50 p-3.5 rounded-xl border border-white/10 space-y-2">
+                                <label class="flex items-center gap-3 cursor-pointer">
+                                    <input type="radio" name="brief-pkg" value="มินิแพ็กเกจ" id="brief-radio-mini" class="accent-[#ff7300]">
+                                    <span class="font-medium text-accent-orange">มินิแพ็กเกจ (เลือกได้มากกว่า 1 รายการ):</span>
+                                </label>
+                                <div class="pl-6 grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs md:text-sm">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" name="brief-mini-sub" value="ช่องทางการติดต่อ (59 ฿)" onchange="document.getElementById('brief-radio-mini').checked=true" class="accent-[#ff7300]">
+                                        <span id="brief-label-m1">ช่องทางการติดต่อ (59 ฿)</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" name="brief-mini-sub" value="ช่องทางการชำระเงิน (69 ฿)" onchange="document.getElementById('brief-radio-mini').checked=true" class="accent-[#ff7300]">
+                                        <span id="brief-label-m2">ช่องทางการชำระเงิน (69 ฿)</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" name="brief-mini-sub" value="เก็บรีวิวและเครดิต (79 ฿)" onchange="document.getElementById('brief-radio-mini').checked=true" class="accent-[#ff7300]">
+                                        <span id="brief-label-m3">เก็บรีวิวและเครดิต (79 ฿)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div>
+                        <label class="block text-white font-medium mb-1.5">3. บริการเสริม / แอดออนที่ต้องการเพิ่มเติม (ระบุได้)</label>
+                        <input type="text" id="brief-addons" placeholder="เช่น เพิ่มหลังบ้าน (+99 ฿) / เพิ่มรายการเหมา 10 รายการ (+39 ฿) / ปุ่มคัดลอก (+19 ฿) หรืออื่นๆ" class="w-full bg-black/60 border border-white/15 focus:border-accent-primary rounded-xl px-4 py-3 text-white outline-none transition-colors">
+                    </div>
+
+                    <!-- 4 -->
+                    <div>
+                        <label class="block text-white font-medium mb-1.5">4. โทนสีหลัก / บรรยากาศที่ต้องการ</label>
+                        <input type="text" id="brief-theme" placeholder="เช่น เรียบหรูมินิมอล / ละมุนอบอุ่น / ดาร์กหรูแดง-ดำ / โทนสีเฉพาะของแบรนด์ (ระบุโค้ดสีได้)" class="w-full bg-black/60 border border-white/15 focus:border-accent-primary rounded-xl px-4 py-3 text-white outline-none transition-colors">
+                    </div>
+
+                    <!-- 5 -->
+                    <div>
+                        <label class="block text-white font-medium mb-1.5">5. ข้อมูลและรายการที่จะลงบนหน้าเว็บ</label>
+                        <textarea id="brief-content" rows="4" placeholder="- ข้อความแนะนำร้าน / สโลแกน / ช่องทางติดต่อ (LINE, IG, TikTok ฯลฯ)&#10;- รายการสินค้า / บริการ / รีวิว / เลขบัญชี (ระบุจำนวนรายการคร่าวๆ และแนบลิงก์รูปภาพ Google Drive / Postimg)" class="w-full bg-black/60 border border-white/15 focus:border-accent-primary rounded-xl px-4 py-3 text-white outline-none transition-colors"></textarea>
+                    </div>
+
+                    <!-- 6 -->
+                    <div>
+                        <label class="block text-white font-medium mb-1.5">6. ลูกเล่นหรือฟีเจอร์เพิ่มเติมที่อยากได้ (ถ้ามี)</label>
+                        <input type="text" id="brief-features" placeholder="เช่น ปุ่มคัดลอกเลขบัญชี/ข้อความ, แท็บกรองหมวดหมู่, กล่องคำถามพับเปิด-ปิด, หน้าต่างดูรายละเอียด" class="w-full bg-black/60 border border-white/15 focus:border-accent-primary rounded-xl px-4 py-3 text-white outline-none transition-colors">
+                    </div>
+
+                    <!-- 7 -->
+                    <div>
+                        <label class="block text-white font-medium mb-2">7. ต้องการรับคิวงานด่วนหรือไม่</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 bg-black/50 p-3 rounded-xl border border-white/10 cursor-pointer">
+                                <input type="radio" name="brief-rush" value="ไม่ด่วน (ตามคิวปกติ ประมาณ 2–4 วัน)" checked class="accent-[#ff1a1a]">
+                                <span>ไม่ด่วน (ตามคิวปกติ ประมาณ 2–4 วัน)</span>
+                            </label>
+                            <label class="flex items-center gap-3 bg-black/50 p-3 rounded-xl border border-white/10 cursor-pointer">
+                                <input type="radio" name="brief-rush" value="รับคิวงานด่วน (+79 ฿ สำหรับ Main / +39 ฿ สำหรับ Mini)" class="accent-[#ff7300]">
+                                <span class="text-accent-orange">รับคิวงานด่วน (+79 ฿ / Mini +39 ฿)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 8 -->
+                    <div>
+                        <label class="block text-white font-medium mb-1.5">8. หมายเหตุเพิ่มเติม / ลิงก์อ้างอิงสไตล์ที่ชอบ (ถ้ามี)</label>
+                        <input type="text" id="brief-notes" placeholder="แนบลิงก์เว็บตัวอย่างที่ชอบ หรือรายละเอียดเพิ่มเติมได้เลยค่ะ" class="w-full bg-black/60 border border-white/15 focus:border-accent-primary rounded-xl px-4 py-3 text-white outline-none transition-colors">
+                    </div>
+
+                    <!-- Generated Brief Output -->
+                    <div class="pt-2">
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button type="button" onclick="generateAndCopyBrief()" class="flex-1 py-3.5 px-6 rounded-xl bg-gradient-to-r from-accent-primary to-accent-orange text-white font-medium shadow-glow-primary hover:opacity-95 transition-all flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                                <span id="copy-brief-btn-text">สรุปและคัดลอกบรีฟส่งเข้าแชต</span>
+                            </button>
+                            <a id="brief-line-btn" href="https://line.me/ti/p/Kx_-mwhVam" target="_blank" rel="noopener" class="py-3.5 px-6 rounded-xl bg-emerald-600/25 hover:bg-emerald-600 border border-emerald-500/50 text-emerald-300 hover:text-white font-medium text-center transition-all">
+                                เปิดแชต LINE →
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer Section + Hidden Admin Trigger -->
+        <footer class="mt-4 border-t border-accent-darkred/40 pt-8 pb-8 text-center relative z-10 w-full">
+            <div class="flex justify-center items-center gap-3 mb-2">
+                <svg class="w-4 h-4 text-accent-orange" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+                <span id="footer-store-name" class="eng-heading text-xl text-gradient">Atelier Chatdarika</span>
+                <svg class="w-4 h-4 text-accent-orange" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"/></svg>
+            </div>
+            <p class="text-[13px] text-accent-white/50 font-light tracking-wide mt-2">© 2026 <span id="footer-copy-name">Atelier Chatdarika</span>. All rights reserved.</p>
+            <p class="text-[11px] text-accent-primary/60 mt-1.5 italic eng-heading tracking-widest">
+                Elegance in Every Pixel
+                <!-- ปุ่มลับสำหรับแอดมิน (คลิกที่รูปกุญแจเล็กๆ ท้ายเครดิต) -->
+                <button onclick="openAdminModal()" title="Admin Access" class="ml-1.5 opacity-25 hover:opacity-100 text-accent-white/60 hover:text-accent-primary transition-opacity align-middle">
+                    ✦
+                </button>
+            </p>
+        </footer>
+
+    </main>
+</div>
+
+<!-- ========================================================= -->
+<!-- ส่วนที่ 7: ระบบหลังบ้านของร้านฉัตรดาริกา (Self-Admin Panel Modal) -->
+<!-- ========================================================= -->
+<div id="admin-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 modal flex justify-center items-center p-3 sm:p-5" onclick="closeAdminModal(event)">
+    <div class="modal-content w-full max-w-3xl bg-dark-card border border-accent-primary/60 rounded-3xl overflow-hidden shadow-glow-primary relative max-h-[90vh] flex flex-col" onclick="event.stopPropagation()">
+        
+        <!-- Modal Header -->
+        <div class="bg-gradient-to-r from-accent-darkred/60 to-black p-5 border-b border-accent-primary/30 flex justify-between items-center shrink-0">
+            <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-accent-primary animate-pulse"></span>
+                <h3 class="text-lg md:text-xl font-semibold text-white">Self-Admin Panel — Atelier Chatdarika</h3>
+            </div>
+            <button onclick="closeAdminModal()" class="text-white/70 hover:text-accent-primary transition-colors">
+                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </button>
+        </div>
+
+        <!-- Login View -->
+        <div id="admin-login-view" class="p-6 md:p-10 space-y-5 overflow-y-auto">
+            <div class="text-center max-w-sm mx-auto space-y-2">
+                <h4 class="text-xl font-medium text-white">เข้าสู่ระบบจัดการร้าน</h4>
+                <p class="text-xs text-accent-white/65">กรอกชื่อผู้ใช้และรหัสผ่านเพื่อแก้ไขข้อมูลหน้าร้าน สถานะคิว ราคา และผลงาน</p>
+            </div>
+            <div class="max-w-sm mx-auto space-y-4">
+                <div>
+                    <label class="block text-xs text-accent-white/80 mb-1">Username</label>
+                    <input type="text" id="admin-user-input" placeholder="กรอกชื่อผู้ใช้" class="w-full bg-black/70 border border-white/15 focus:border-accent-primary rounded-xl px-4 py-3 text-sm text-white outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs text-accent-white/80 mb-1">Password</label>
+                    <input type="password" id="admin-pass-input" placeholder="กรอกรหัสผ่าน" onkeydown="if(event.key==='Enter') handleAdminLogin()" class="w-full bg-black/70 border border-white/15 focus:border-accent-primary rounded-xl px-4 py-3 text-sm text-white outline-none">
+                </div>
+                <p id="admin-login-error" class="text-xs text-accent-primary hidden text-center">ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้องค่ะ</p>
+                <button type="button" onclick="handleAdminLogin()" class="w-full py-3 rounded-xl bg-gradient-to-r from-accent-primary to-accent-orange text-white font-medium text-sm shadow-glow-primary">
+                    เข้าสู่ระบบแอดมิน
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard View -->
+        <div id="admin-dashboard-view" class="hidden flex-1 overflow-y-auto p-5 md:p-6 space-y-6">
+            
+            <!-- Admin Tabs -->
+            <div class="flex flex-wrap gap-2 border-b border-white/10 pb-3">
+                <button onclick="switchAdminTab('queue')" id="admintab-queue" class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-medium bg-accent-primary text-white">1. สถานะคิวงาน</button>
+                <button onclick="switchAdminTab('profile')" id="admintab-profile" class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-medium bg-white/5 text-white/75 hover:text-white">2. โปรไฟล์ & ติดต่อ</button>
+                <button onclick="switchAdminTab('pricing')" id="admintab-pricing" class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-medium bg-white/5 text-white/75 hover:text-white">3. ราคาแพ็กเกจ & แอดออน</button>
+                <button onclick="switchAdminTab('portfolio')" id="admintab-portfolio" class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-medium bg-white/5 text-white/75 hover:text-white">4. ตัวอย่างผลงาน</button>
+                <button onclick="switchAdminTab('backup')" id="admintab-backup" class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-medium bg-white/5 text-white/75 hover:text-white">5. สำรอง / รีเซ็ต</button>
+            </div>
+
+            <!-- Tab 1: Queue -->
+            <div id="admin-panel-queue" class="admin-panel space-y-4">
+                <div class="flex flex-wrap gap-2">
+                    <button type="button" onclick="applyQueuePreset('open')" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs hover:bg-emerald-500/30">กรณี 1: เปิดรับงานปกติ</button>
+                    <button type="button" onclick="applyQueuePreset('almost')" class="px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs hover:bg-amber-500/30">กรณี 2: คิวใกล้เต็ม</button>
+                    <button type="button" onclick="applyQueuePreset('closed')" class="px-3 py-1.5 rounded-lg bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs hover:bg-rose-500/30">กรณี 3: ปิดรับชั่วคราว</button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs md:text-sm">
+                    <div>
+                        <label class="block text-white/70 mb-1">ประเภทสถานะ (สีป้าย)</label>
+                        <select id="edit-queue-type" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white">
+                            <option value="open">เปิดรับงานปกติ (สีเขียว)</option>
+                            <option value="almost">คิวใกล้เต็ม (สีส้ม/เหลือง)</option>
+                            <option value="closed">ปิดรับชั่วคราว (สีแดง)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-white/70 mb-1">ข้อความป้ายสถานะ</label>
+                        <input type="text" id="edit-queue-status" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-white/70 mb-1">จำนวนคิวว่าง</label>
+                        <input type="text" id="edit-queue-slots" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-white/70 mb-1">กำหนดส่งงาน</label>
+                        <input type="text" id="edit-queue-delivery" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs md:text-sm text-white/70 mb-1">ข้อความประกาศ</label>
+                    <textarea id="edit-queue-announcement" rows="3" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-xs md:text-sm text-white"></textarea>
+                </div>
+            </div>
+
+            <!-- Tab 2: Profile & Contact -->
+            <div id="admin-panel-profile" class="admin-panel hidden space-y-3 text-xs md:text-sm">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-white/70 mb-1">ชื่อร้าน</label>
+                        <input type="text" id="edit-store-name" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-white/70 mb-1">สโลแกนร้าน</label>
+                        <input type="text" id="edit-slogan" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-white/70 mb-1">ลิงก์รูปภาพโลโก้ร้าน (URL)</label>
+                    <input type="text" id="edit-logo-url" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white">
+                </div>
+                <div>
+                    <label class="block text-white/70 mb-1">คำแนะนำตัว</label>
+                    <textarea id="edit-bio" rows="3" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white"></textarea>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-white/70 mb-1">ลิงก์ LINE</label>
+                        <input type="text" id="edit-line-url" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-white/70 mb-1">ชื่อเพจ Facebook</label>
+                        <input type="text" id="edit-fb-name" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-white/70 mb-1">ลิงก์ Facebook</label>
+                        <input type="text" id="edit-fb-url" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2.5 text-white">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Pricing -->
+            <div id="admin-panel-pricing" class="admin-panel hidden space-y-4 text-xs md:text-sm">
+                <div>
+                    <h4 class="text-accent-primary font-medium mb-2">ราคา Main Package (บาท)</h4>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-white/70 mb-1">Basic</label>
+                            <input type="number" id="edit-p-basic" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">Standard</label>
+                            <input type="number" id="edit-p-standard" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">Pro (Custom)</label>
+                            <input type="number" id="edit-p-pro" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-accent-orange font-medium mb-2">บริการเสริม Main Package (บาท)</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-white/70 mb-1">เพิ่มระบบหลังบ้าน</label>
+                            <input type="number" id="edit-am-admin" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">เพิ่ม 10 รายการ</label>
+                            <input type="number" id="edit-am-items" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">เพิ่มลูกเล่นโต้ตอบ</label>
+                            <input type="number" id="edit-am-inter" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">คิวงานด่วน (Main)</label>
+                            <input type="number" id="edit-am-rush" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">แก้ไขเพิ่ม/ครั้ง</label>
+                            <input type="number" id="edit-am-edit" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">ช่วยคิดข้อความ</label>
+                            <input type="number" id="edit-am-copy" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-accent-orange font-medium mb-2">ราคา Mini Package (บาท)</h4>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-white/70 mb-1">ช่องทางการติดต่อ</label>
+                            <input type="number" id="edit-pm-contact" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">ช่องทางการชำระเงิน</label>
+                            <input type="number" id="edit-pm-payment" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">เก็บรีวิวและเครดิต</label>
+                            <input type="number" id="edit-pm-review" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-accent-primary font-medium mb-2">บริการเสริม Mini Package (บาท)</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div>
+                            <label class="block text-white/70 mb-1">ปุ่มคัดลอกอัตโนมัติ</label>
+                            <input type="number" id="edit-ami-copy" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">คิวงานด่วน (Mini)</label>
+                            <input type="number" id="edit-ami-rush" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">แก้ไขเพิ่มเติม</label>
+                            <input type="number" id="edit-ami-edit" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-white/70 mb-1">เชื่อมหลายหน้า</label>
+                            <input type="number" id="edit-ami-link" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Portfolio -->
+            <div id="admin-panel-portfolio" class="admin-panel hidden space-y-4 text-xs md:text-sm">
+                <div class="flex justify-between items-center">
+                    <p class="text-white/80">เพิ่ม / ลบ / แก้ไขการ์ดตัวอย่างผลงานหน้าร้าน</p>
+                    <button type="button" onclick="addAdminPortfolioItem()" class="px-3.5 py-1.5 rounded-xl bg-accent-orange text-white text-xs font-medium">+ เพิ่มผลงานใหม่</button>
+                </div>
+                <div id="admin-portfolio-list" class="space-y-3"></div>
+            </div>
+
+            <!-- Tab 5: Backup & Reset -->
+            <div id="admin-panel-backup" class="admin-panel hidden space-y-4 text-xs md:text-sm">
+                <div class="bg-black/50 p-4 rounded-2xl border border-white/10 space-y-3">
+                    <h4 class="font-medium text-white">สำรองข้อมูลการตั้งค่า (Export / Import JSON)</h4>
+                    <p class="text-white/65 text-xs">เนื่องจากระบบบันทึกลงเบราว์เซอร์ของเครื่องนี้ คุณฉัตรดาริกาสามารถคัดลอกโค้ดสำรองข้อมูลเก็บไว้ หรือนำมาวางเพื่อกู้คืนได้ตลอดเวลาค่ะ</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" onclick="exportConfigJSON()" class="px-4 py-2 rounded-xl bg-accent-primary text-white text-xs font-medium">สร้างโค้ดสำรองข้อมูล</button>
+                        <button type="button" onclick="importConfigJSON()" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs">นำเข้าข้อมูลจากโค้ดด้านล่าง</button>
+                    </div>
+                    <textarea id="backup-json-box" rows="4" placeholder="โค้ดสำรองข้อมูล JSON จะแสดงที่นี่..." class="w-full bg-black/80 border border-white/15 rounded-xl p-3 text-xs text-emerald-300 font-mono"></textarea>
+                </div>
+
+                <div class="bg-rose-950/30 p-4 rounded-2xl border border-rose-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h4 class="font-medium text-rose-300">รีเซ็ตข้อมูลกลับเป็นค่าเริ่มต้น</h4>
+                        <p class="text-white/60 text-xs">ล้างค่าที่แก้ไขทั้งหมดในเบราว์เซอร์นี้ให้กลับเป็นค่าตั้งต้นของร้าน</p>
+                    </div>
+                    <button type="button" onclick="resetToDefaultConfig()" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-medium shrink-0">รีเซ็ตค่าเริ่มต้น</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Dashboard Footer Save Bar -->
+        <div id="admin-save-bar" class="hidden p-4 bg-black/80 border-t border-white/10 flex items-center justify-between gap-3 shrink-0">
+            <button type="button" onclick="logoutAdmin()" class="text-xs text-white/60 hover:text-white">ออกจากระบบแอดมิน</button>
+            <div class="flex items-center gap-3">
+                <span id="admin-save-msg" class="text-xs text-emerald-400 hidden">บันทึกเรียบร้อยแล้ว!</span>
+                <button type="button" onclick="saveAdminChanges()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-accent-primary to-accent-orange text-white text-sm font-medium shadow-glow-primary">
+                    บันทึกการเปลี่ยนแปลงทั้งหมด
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Demo Preview Modal (สำหรับดูตัวอย่างจำลองเมื่อยังไม่มีลิงก์จริง) -->
+<div id="demo-preview-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 modal flex justify-center items-center p-4" onclick="closeDemoPreview(event)">
+    <div class="modal-content w-full max-w-md bg-dark-card border border-accent-orange/50 rounded-3xl p-6 space-y-4 shadow-glow-orange relative" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+            <span class="text-xs uppercase tracking-widest text-accent-orange eng-heading">Sample Preview</span>
+            <button onclick="closeDemoPreview()" class="text-white/70 hover:text-accent-primary">✕</button>
+        </div>
+        <h3 id="demo-modal-title" class="text-xl font-semibold text-white">ชื่อตัวอย่าง</h3>
+        <p id="demo-modal-desc" class="text-sm text-accent-white/80 leading-relaxed"></p>
+        <div class="bg-black/60 p-4 rounded-2xl border border-white/10 text-xs text-accent-white/70 space-y-1.5">
+            <p class="text-accent-primary font-medium">✦ ไฮไลต์โครงสร้างตัวอย่าง:</p>
+            <p id="demo-modal-highlights"></p>
+        </div>
+        <div class="pt-2 flex gap-2">
+            <a id="demo-modal-external" href="#" target="_blank" rel="noopener" class="flex-1 py-2.5 rounded-xl bg-accent-primary text-white text-center text-sm font-medium hidden">เปิดลิงก์เว็บตัวอย่างจริง ↗</a>
+            <button onclick="closeDemoPreview()" class="flex-1 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm">ปิดหน้าต่าง</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // =========================================================
+    // 1. DEFAULT DATA CONFIGURATION
+    // =========================================================
+    const ADMIN_CREDENTIALS = {
+        username: "Chardarika.benyapa",
+        password: "benyapa5365"
+    };
+
+    const QUEUE_PRESETS = {
+        open: {
+            type: "open",
+            status: "เปิดรับงานปกติ",
+            slots: "ว่าง 3 คิว",
+            delivery: "ประมาณ 2–4 วัน (หลังได้รับข้อมูลครบและชำระเงิน)",
+            announcement: "\"เปิดรับคิวออกแบบเว็บไซต์รอบใหม่แล้วค่ะ ทักแชทส่งบรีฟหรือกดคำนวณราคาด้านล่างเพื่อสอบถามคิวก่อนได้เลยนะคะ\""
+        },
+        almost: {
+            type: "almost",
+            status: "คิวใกล้เต็ม",
+            slots: "ว่าง 1 คิวสุดท้าย",
+            delivery: "ประมาณ 3–5 วัน",
+            announcement: "\"เหลือคิวว่างรอบนี้เพียง 1 คิวสุดท้ายค่ะ หากต้องการคิวงานด่วนสามารถแจ้งสอบถามทางแชตก่อนจองคิวได้เลยนะคะ\""
+        },
+        closed: {
+            type: "closed",
+            status: "ปิดรับชั่วคราว",
+            slots: "เต็มชั่วคราว (เปิดรับอีกทีเร็วๆ นี้)",
+            delivery: "รออัปเดตรอบถัดไป",
+            announcement: "\"ขออนุญาตปิดรับคิวชั่วคราวเพื่อเคลียร์งานรอบปัจจุบันให้เรียบร้อยที่สุดค่ะ สามารถทักฝากบรีฟไว้ล่วงหน้าหรือติดต่อสอบถามได้นะคะ\""
+        }
+    };
+
+    const DEFAULT_DATA = {
+        profile: {
+            storeName: "Atelier Chatdarika",
+            slogan: "Elegance in Every Pixel",
+            bio: "สวัสดีค่ะ ยินดีที่ได้รู้จักกับฉัตรดาริกานะคะ เราตั้งใจทำเว็บให้เป็นเรื่องง่ายสำหรับเจ้าของร้านทุกคน ไม่ว่าคุณจะยังไม่เคยมีเว็บไซต์มาก่อนหรือยังไม่มีไอเดียในหัว สามารถทักมาพูดคุยปรึกษากับฉัตรดาริกาได้เลยค่า",
+            logoUrl: "https://i.postimg.cc/HLBk00nV/mi-m-ch-x-8-20260408220728.png",
+            lineUrl: "https://line.me/ti/p/Kx_-mwhVam",
+            fbName: "Atelier Chatdarika",
+            fbUrl: "https://www.facebook.com/profile.php?id=61596551593901"
+        },
+        queue: { ...QUEUE_PRESETS.open },
+        pricing: {
+            main: {
+                basic: 129,
+                standard: 199,
+                pro: 299
+            },
+            mainAddons: {
+                admin: 99,
+                items: 39,
+                interactive: 59,
+                rush: 79,
+                edit: 30,
+                copywriting: 49
+            },
+            mini: {
+                contact: 59,
+                payment: 69,
+                review: 79
+            },
+            miniAddons: {
+                copyBtn: 19,
+                rush: 39,
+                edit: 20,
+                multiPage: 39
+            }
+        },
+        portfolio: [
+            {
+                id: "demo-1",
+                tag: "ตัวอย่างแนวร้านค้า / แบรนด์",
+                title: "Velvet Noir Bakery & Cafe",
+                desc: "เว็บแนะนำร้านและเมนูซิกเนเจอร์ โทนดาร์กหรูหรา พร้อมปุ่มกดสั่งซื้อเข้า LINE และระบบจัดการเมนูหลังบ้าน",
+                highlights: "รองรับมือถือ 100% • แท็บแยกหมวดหมู่สินค้า • ปุ่มลิงก์แชตด่วน",
+                url: ""
+            },
+            {
+                id: "demo-2",
+                tag: "ตัวอย่างแนวบริการ / พอร์ตโฟลิโอ",
+                title: "Celestial Studio Portfolio",
+                desc: "หน้ารวมผลงาน เรทราคา และขั้นตอนการจ้างงานแบบครบจบในลิงก์เดียว เหมาะสำหรับฟรีแลนซ์และสายอาร์ต",
+                highlights: "การ์ดแสดงผลงานแบบป๊อปอัป • กล่องคำถามพับเปิด-ปิด • ปุ่มคัดลอกคอนแทค",
+                url: ""
+            },
+            {
+                id: "demo-3",
+                tag: "ตัวอย่างแนว Mini Package",
+                title: "Quick Pay & Contact Card",
+                desc: "หน้าเว็บป้ายบัญชีและช่องทางติดต่อรวมศูนย์ กดคัดลอกเลขบัญชีหรือพร้อมเพย์ได้ในคลิกเดียว",
+                highlights: "ปุ่ม Copy เลขบัญชีอัตโนมัติ • โหลดไว เปิดง่ายผ่านไบโอ IG / TikTok",
+                url: ""
+            }
+        ]
+    };
+
+    const STORAGE_KEY = "atelier_chatdarika_site_data_v1";
+    let siteData = loadSiteData();
+
+    function loadSiteData() {
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                return {
+                    profile: { ...DEFAULT_DATA.profile, ...(parsed.profile || {}) },
+                    queue: { ...DEFAULT_DATA.queue, ...(parsed.queue || {}) },
+                    pricing: {
+                        main: { ...DEFAULT_DATA.pricing.main, ...(parsed.pricing?.main || {}) },
+                        mainAddons: { ...DEFAULT_DATA.pricing.mainAddons, ...(parsed.pricing?.mainAddons || {}) },
+                        mini: { ...DEFAULT_DATA.pricing.mini, ...(parsed.pricing?.mini || {}) },
+                        miniAddons: { ...DEFAULT_DATA.pricing.miniAddons, ...(parsed.pricing?.miniAddons || {}) }
+                    },
+                    portfolio: Array.isArray(parsed.portfolio) ? parsed.portfolio : [...DEFAULT_DATA.portfolio]
+                };
+            }
+        } catch (e) {
+            console.warn("Storage load fallback:", e);
+        }
+        return JSON.parse(JSON.stringify(DEFAULT_DATA));
+    }
+
+    function saveSiteDataToStorage() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(siteData));
+        } catch (e) {
+            alert("ไม่สามารถบันทึกข้อมูลลงเบราว์เซอร์ได้ กรุณาตรวจสอบพื้นที่จัดเก็บ");
+        }
+    }
+
+    // =========================================================
+    // 2. RENDER SITE CONTENT
+    // =========================================================
+    function renderAllSite() {
+        // Profile
+        document.title = `${siteData.profile.storeName} — ${siteData.profile.slogan}`;
+        document.getElementById("nav-store-name").textContent = siteData.profile.storeName;
+        document.getElementById("display-store-name").textContent = siteData.profile.storeName;
+        document.getElementById("display-slogan").textContent = siteData.profile.slogan;
+        document.getElementById("display-bio").textContent = siteData.profile.bio;
+        document.getElementById("store-logo").src = siteData.profile.logoUrl || DEFAULT_DATA.profile.logoUrl;
+        document.getElementById("link-line").href = siteData.profile.lineUrl;
+        document.getElementById("calc-chat-link").href = siteData.profile.lineUrl;
+        document.getElementById("brief-line-btn").href = siteData.profile.lineUrl;
+        document.getElementById("link-facebook").href = siteData.profile.fbUrl;
+        document.getElementById("display-fb-name").textContent = `Facebook: ${siteData.profile.fbName}`;
+        document.getElementById("brief-store-title").textContent = siteData.profile.storeName;
+        document.getElementById("footer-store-name").textContent = siteData.profile.storeName;
+        document.getElementById("footer-copy-name").textContent = siteData.profile.storeName;
+
+        // Queue
+        const q = siteData.queue;
+        const badge = document.getElementById("queue-badge");
+        const dot = document.getElementById("queue-dot");
+        const ping = document.getElementById("queue-ping");
+
+        badge.textContent = q.status;
+        document.getElementById("queue-slots").textContent = q.slots;
+        document.getElementById("queue-delivery").textContent = q.delivery;
+        document.getElementById("queue-announcement").textContent = q.announcement;
+
+        badge.className = "self-start sm:self-auto px-4 py-1 rounded-full text-xs md:text-sm font-medium border ";
+        dot.className = "relative inline-flex rounded-full h-3.5 w-3.5 ";
+        ping.className = "animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ";
+
+        if (q.type === "almost") {
+            badge.className += "bg-amber-500/20 text-amber-300 border-amber-500/40";
+            dot.className += "bg-amber-400";
+            ping.className += "bg-amber-400";
+        } else if (q.type === "closed") {
+            badge.className += "bg-rose-500/20 text-rose-300 border-rose-500/40";
+            dot.className += "bg-rose-500";
+            ping.className += "bg-rose-500";
+        } else {
+            badge.className += "bg-emerald-500/20 text-emerald-300 border-emerald-500/40";
+            dot.className += "bg-emerald-500";
+            ping.className += "bg-emerald-400";
+        }
+
+        // Pricing Display
+        const p = siteData.pricing;
+        document.getElementById("price-basic").textContent = p.main.basic;
+        document.getElementById("price-standard").textContent = p.main.standard;
+        document.getElementById("price-pro").textContent = p.main.pro;
+
+        document.getElementById("addon-main-admin").textContent = p.mainAddons.admin;
+        document.getElementById("addon-main-items").textContent = p.mainAddons.items;
+        document.getElementById("addon-main-inter").textContent = p.mainAddons.interactive;
+        document.getElementById("addon-main-rush").textContent = p.mainAddons.rush;
+        document.getElementById("addon-main-edit").textContent = p.mainAddons.edit;
+        document.getElementById("addon-main-copy").textContent = p.mainAddons.copywriting;
+
+        document.getElementById("price-mini-contact").textContent = p.mini.contact;
+        document.getElementById("price-mini-payment").textContent = p.mini.payment;
+        document.getElementById("price-mini-review").textContent = p.mini.review;
+
+        document.getElementById("addon-mini-copy").textContent = p.miniAddons.copyBtn;
+        document.getElementById("addon-mini-link").textContent = p.miniAddons.multiPage;
+        document.getElementById("addon-mini-rush").textContent = p.miniAddons.rush;
+        document.getElementById("addon-mini-edit").textContent = p.miniAddons.edit;
+
+        // Sync Brief Form Labels with updated prices
+        document.getElementById("brief-label-basic").textContent = `Basic (เริ่มต้น ${p.main.basic} ฿ — เว็บหน้าเดียว / ไม่เกิน 8 รายการ / แก้ฟรี 1 ครั้ง)`;
+        document.getElementById("brief-label-standard").textContent = `Standard (เริ่มต้น ${p.main.standard} ฿ — หลังบ้าน + ลูกเล่น 1 อย่าง / ไม่เกิน 15 รายการ / แก้ฟรี 2 ครั้ง)`;
+        document.getElementById("brief-label-pro").textContent = `Pro / Custom (เริ่มต้น ${p.main.pro} ฿ — คัสต้อมตามสั่ง / หลังบ้านครบ + ฟีเจอร์พิเศษ / ไม่เกิน 25 รายการ / แก้ฟรี 3 ครั้ง)`;
+        document.getElementById("brief-label-m1").textContent = `ช่องทางการติดต่อ (${p.mini.contact} ฿)`;
+        document.getElementById("brief-label-m2").textContent = `ช่องทางการชำระเงิน (${p.mini.payment} ฿)`;
+        document.getElementById("brief-label-m3").textContent = `เก็บรีวิวและเครดิต (${p.mini.review} ฿)`;
+
+        renderCalculatorOptions();
+        renderPortfolio();
+    }
+
+    // =========================================================
+    // 3. INTERACTIVE QUOTE CALCULATOR (แยก Main กับ Mini ชัดเจน)
+    // =========================================================
+    let calcMode = "main"; // 'main' | 'mini'
+    let selectedMainPkg = "basic";
+    let selectedMainAddons = new Set();
+    let selectedMiniPkgs = new Set(["contact"]);
+    let selectedMiniAddons = new Set();
+
+    function switchCalcMode(mode) {
+        calcMode = mode;
+        const btnMain = document.getElementById("tab-calc-main");
+        const btnMini = document.getElementById("tab-calc-mini");
+        const panelMain = document.getElementById("calc-panel-main");
+        const panelMini = document.getElementById("calc-panel-mini");
+
+        if (mode === "main") {
+            btnMain.className = "py-2.5 px-4 rounded-xl text-sm font-medium bg-accent-primary text-white shadow-glow-primary transition-all";
+            btnMini.className = "py-2.5 px-4 rounded-xl text-sm font-medium text-accent-white/70 hover:text-white transition-all";
+            panelMain.classList.remove("hidden");
+            panelMini.classList.add("hidden");
+        } else {
+            btnMini.className = "py-2.5 px-4 rounded-xl text-sm font-medium bg-accent-orange text-white shadow-glow-orange transition-all";
+            btnMain.className = "py-2.5 px-4 rounded-xl text-sm font-medium text-accent-white/70 hover:text-white transition-all";
+            panelMini.classList.remove("hidden");
+            panelMain.classList.add("hidden");
+        }
+        updateCalculatorTotal();
+    }
+
+    function selectPackageForCalc(mode, key) {
+        switchCalcMode(mode);
+        if (mode === "main") {
+            selectedMainPkg = key;
+        } else {
+            selectedMiniPkgs = new Set([key]);
+        }
+        renderCalculatorOptions();
+        document.getElementById("calculator-section").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function renderCalculatorOptions() {
+        const p = siteData.pricing;
+
+        // Main Packages
+        const mainPkgs = [
+            { key: "basic", name: "Basic", sub: "ไม่เกิน 8 รายการ • แก้ฟรี 1 ครั้ง", price: p.main.basic },
+            { key: "standard", name: "Standard", sub: "หลังบ้าน + ลูกเล่น 1 • แก้ฟรี 2 ครั้ง", price: p.main.standard },
+            { key: "pro", name: "Pro (Custom)", sub: "คัสต้อม + สำรองข้อมูล • แก้ฟรี 3 ครั้ง", price: p.main.pro }
+        ];
+        document.getElementById("calc-main-packages").innerHTML = mainPkgs.map(item => `
+            <label class="cursor-pointer rounded-2xl p-4 border transition-all flex flex-col justify-between ${selectedMainPkg === item.key ? 'bg-accent-primary/20 border-accent-primary shadow-glow-primary' : 'bg-black/50 border-white/10 hover:border-white/30'}">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="font-semibold text-white text-sm">${item.name}</span>
+                    <input type="radio" name="calc-main-radio" ${selectedMainPkg === item.key ? 'checked' : ''} onchange="selectedMainPkg='${item.key}'; renderCalculatorOptions();" class="accent-[#ff1a1a]">
+                </div>
+                <p class="text-[11px] text-white/65 mb-2">${item.sub}</p>
+                <span class="text-xl font-bold text-accent-orange">${item.price} ฿</span>
+            </label>
+        `).join("");
+
+        // Main Addons
+        const mainAddonsList = [
+            { key: "admin", name: "เพิ่มระบบหลังบ้าน", price: p.mainAddons.admin },
+            { key: "items", name: "เพิ่มรายการสินค้า/บริการ (เหมา 10 รายการ)", price: p.mainAddons.items },
+            { key: "interactive", name: "เพิ่มลูกเล่นโต้ตอบ", price: p.mainAddons.interactive },
+            { key: "rush", name: "คิวงานด่วน", price: p.mainAddons.rush },
+            { key: "edit", name: "แก้ไขเพิ่ม (1 ครั้ง)", price: p.mainAddons.edit },
+            { key: "copywriting", name: "ช่วยคิดข้อความ", price: p.mainAddons.copywriting }
+        ];
+        document.getElementById("calc-main-addons").innerHTML = mainAddonsList.map(item => `
+            <label class="cursor-pointer rounded-xl p-3 border transition-all flex items-center justify-between gap-2 text-xs md:text-sm ${selectedMainAddons.has(item.key) ? 'bg-accent-orange/15 border-accent-orange' : 'bg-black/40 border-white/10 hover:border-white/25'}">
+                <span class="flex items-center gap-2.5">
+                    <input type="checkbox" ${selectedMainAddons.has(item.key) ? 'checked' : ''} onchange="toggleSetItem('mainAddon', '${item.key}')" class="accent-[#ff7300]">
+                    <span>${item.name}</span>
+                </span>
+                <span class="text-accent-orange font-medium shrink-0">+${item.price} ฿</span>
+            </label>
+        `).join("");
+
+        // Mini Packages
+        const miniPkgs = [
+            { key: "contact", name: "เว็บช่องทางการติดต่อ", price: p.mini.contact },
+            { key: "payment", name: "เว็บช่องทางการชำระเงิน", price: p.mini.payment },
+            { key: "review", name: "เว็บเก็บรีวิวและเครดิต", price: p.mini.review }
+        ];
+        document.getElementById("calc-mini-packages").innerHTML = miniPkgs.map(item => `
+            <label class="cursor-pointer rounded-2xl p-4 border transition-all flex flex-col justify-between ${selectedMiniPkgs.has(item.key) ? 'bg-accent-orange/20 border-accent-orange shadow-glow-orange' : 'bg-black/50 border-white/10 hover:border-white/30'}">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-medium text-white text-sm">${item.name}</span>
+                    <input type="checkbox" ${selectedMiniPkgs.has(item.key) ? 'checked' : ''} onchange="toggleSetItem('miniPkg', '${item.key}')" class="accent-[#ff7300]">
+                </div>
+                <span class="text-xl font-bold text-accent-primary">${item.price} ฿</span>
+            </label>
+        `).join("");
+
+        // Mini Addons
+        const miniAddonsList = [
+            { key: "copyBtn", name: "ปุ่มคัดลอกข้อความอัตโนมัติ (Copy Button)", price: p.miniAddons.copyBtn },
+            { key: "rush", name: "คิวงานด่วน", price: p.miniAddons.rush },
+            { key: "edit", name: "แก้ไขเพิ่มเติม (หลังส่งมอบ 1 ครั้ง)", price: p.miniAddons.edit },
+            { key: "multiPage", name: "ทำเป็นหลายหน้า / เชื่อมลิงก์หากัน", price: p.miniAddons.multiPage }
+        ];
+        document.getElementById("calc-mini-addons").innerHTML = miniAddonsList.map(item => `
+            <label class="cursor-pointer rounded-xl p-3 border transition-all flex items-center justify-between gap-2 text-xs md:text-sm ${selectedMiniAddons.has(item.key) ? 'bg-accent-primary/15 border-accent-primary' : 'bg-black/40 border-white/10 hover:border-white/25'}">
+                <span class="flex items-center gap-2.5">
+                    <input type="checkbox" ${selectedMiniAddons.has(item.key) ? 'checked' : ''} onchange="toggleSetItem('miniAddon', '${item.key}')" class="accent-[#ff1a1a]">
+                    <span>${item.name}</span>
+                </span>
+                <span class="text-accent-primary font-medium shrink-0">+${item.price} ฿</span>
+            </label>
+        `).join("");
+
+        updateCalculatorTotal();
+    }
+
+    function toggleSetItem(group, key) {
+        if (group === "mainAddon") {
+            selectedMainAddons.has(key) ? selectedMainAddons.delete(key) : selectedMainAddons.add(key);
+        } else if (group === "miniPkg") {
+            selectedMiniPkgs.has(key) ? selectedMiniPkgs.delete(key) : selectedMiniPkgs.add(key);
+        } else if (group === "miniAddon") {
+            selectedMiniAddons.has(key) ? selectedMiniAddons.delete(key) : selectedMiniAddons.add(key);
+        }
+        renderCalculatorOptions();
+    }
+
+    function updateCalculatorTotal() {
+        const p = siteData.pricing;
+        let total = 0;
+        let lines = [`✦ ประเมินราคาเบื้องต้น — ${siteData.profile.storeName} ✦`];
+
+        if (calcMode === "main") {
+            const names = { basic: "Basic", standard: "Standard", pro: "Pro (Custom)" };
+            const basePrice = Number(p.main[selectedMainPkg] || 0);
+            total += basePrice;
+            lines.push(`• ประเภท: Main Package (${names[selectedMainPkg]} — ${basePrice} ฿)`);
+
+            const addonMap = {
+                admin: ["เพิ่มระบบหลังบ้าน", p.mainAddons.admin],
+                items: ["เพิ่มรายการสินค้า/บริการ (เหมา 10 รายการ)", p.mainAddons.items],
+                interactive: ["เพิ่มลูกเล่นโต้ตอบ", p.mainAddons.interactive],
+                rush: ["คิวงานด่วน", p.mainAddons.rush],
+                edit: ["แก้ไขเพิ่ม (1 ครั้ง)", p.mainAddons.edit],
+                copywriting: ["ช่วยคิดข้อความ", p.mainAddons.copywriting]
+            };
+
+            if (selectedMainAddons.size > 0) {
+                lines.push("• บริการเสริม:");
+                selectedMainAddons.forEach(k => {
+                    const [label, price] = addonMap[k];
+                    total += Number(price);
+                    lines.push(`   - ${label} (+${price} ฿)`);
+                });
+            } else {
+                lines.push("• บริการเสริม: ไม่มี");
+            }
+        } else {
+            lines.push("• ประเภท: Mini Package");
+            const miniMap = {
+                contact: ["เว็บช่องทางการติดต่อ", p.mini.contact],
+                payment: ["เว็บช่องทางการชำระเงิน", p.mini.payment],
+                review: ["เว็บเก็บรีวิวและเครดิต", p.mini.review]
+            };
+            if (selectedMiniPkgs.size > 0) {
+                selectedMiniPkgs.forEach(k => {
+                    const [label, price] = miniMap[k];
+                    total += Number(price);
+                    lines.push(`   - ${label} (${price} ฿)`);
+                });
+            } else {
+                lines.push("   - (ยังไม่ได้เลือกมินิแพ็กเกจ)");
+            }
+
+            const miniAddonMap = {
+                copyBtn: ["ปุ่มคัดลอกข้อความอัตโนมัติ", p.miniAddons.copyBtn],
+                rush: ["คิวงานด่วน", p.miniAddons.rush],
+                edit: ["แก้ไขเพิ่มเติม (หลังส่งมอบ)", p.miniAddons.edit],
+                multiPage: ["ทำเป็นหลายหน้า / เชื่อมลิงก์หากัน", p.miniAddons.multiPage]
+            };
+            if (selectedMiniAddons.size > 0) {
+                lines.push("• บริการเสริม:");
+                selectedMiniAddons.forEach(k => {
+                    const [label, price] = miniAddonMap[k];
+                    total += Number(price);
+                    lines.push(`   - ${label} (+${price} ฿)`);
+                });
+            } else {
+                lines.push("• บริการเสริม: ไม่มี");
+            }
+        }
+
+        const paymentRule = total >= 200
+            ? `ชำระมัดจำ 50% (${Math.ceil(total / 2)} ฿)`
+            : "ยอดต่ำกว่า 200 บาท ชำระเต็มจำนวน";
+
+        lines.push(`• ยอดรวมเบื้องต้น: ${total} ฿ (${paymentRule})`);
+
+        document.getElementById("calc-total-price").textContent = `${total} ฿`;
+        document.getElementById("calc-deposit-note").textContent = `เงื่อนไขชำระเงิน: ${paymentRule}`;
+        document.getElementById("calc-summary-text").textContent = lines.join("\n");
+    }
+
+    function copyQuoteSummary() {
+        const text = document.getElementById("calc-summary-text").textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const btnText = document.getElementById("copy-quote-btn-text");
+            btnText.textContent = "คัดลอกสรุปรายการเรียบร้อยแล้ว ✓";
+            setTimeout(() => { btnText.textContent = "คัดลอกสรุปรายการส่งเข้าแชต"; }, 2500);
+        });
+    }
+
+    function sendQuoteToBrief() {
+        const summary = document.getElementById("calc-summary-text").textContent;
+        document.getElementById("brief-addons").value = summary.replace(/\n/g, " | ");
+        document.getElementById("brief-section").scrollIntoView({ behavior: "smooth" });
+    }
+
+    // =========================================================
+    // 4. PORTFOLIO RENDER & PREVIEW
+    // =========================================================
+    function renderPortfolio() {
+        const grid = document.getElementById("portfolio-grid");
+        if (!siteData.portfolio.length) {
+            grid.innerHTML = `<div class="col-span-full text-center text-white/60 py-8 glass-card rounded-2xl">กำลังอัปเดตผลงานตัวอย่างเร็วๆ นี้ค่ะ</div>`;
+            return;
+        }
+        grid.innerHTML = siteData.portfolio.map((item, idx) => `
+            <div class="glass-card p-6 rounded-2xl border border-white/10 hover:border-accent-primary/50 transition-all flex flex-col justify-between group">
+                <div>
+                    <span class="inline-block text-[11px] px-3 py-1 rounded-full bg-accent-primary/15 text-accent-orange border border-accent-primary/30 mb-3">
+                        ${escapeHtml(item.tag)}
+                    </span>
+                    <h3 class="text-lg font-semibold text-white group-hover:text-accent-primary transition-colors mb-2">
+                        ${escapeHtml(item.title)}
+                    </h3>
+                    <p class="text-xs md:text-sm text-accent-white/75 leading-relaxed mb-3">
+                        ${escapeHtml(item.desc)}
+                    </p>
+                    <p class="text-xs text-accent-orange/90 bg-black/40 p-2.5 rounded-xl border border-white/5 mb-4">
+                        ${escapeHtml(item.highlights)}
+                    </p>
+                </div>
+                ${item.url && item.url.trim() !== ""
+                    ? `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-accent-primary to-accent-orange text-white text-center text-xs md:text-sm font-medium shadow-glow-primary hover:opacity-90 transition-all">ดูหน้าเว็บตัวอย่างจริง ↗</a>`
+                    : `<button type="button" onclick="openDemoPreview(${idx})" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-accent-primary/25 border border-white/15 hover:border-accent-primary text-white text-xs md:text-sm transition-all">ดูรายละเอียดตัวอย่าง</button>`
+                }
+            </div>
+        `).join("");
+    }
+
+    function openDemoPreview(idx) {
+        const item = siteData.portfolio[idx];
+        if (!item) return;
+        document.getElementById("demo-modal-title").textContent = item.title;
+        document.getElementById("demo-modal-desc").textContent = item.desc;
+        document.getElementById("demo-modal-highlights").textContent = item.highlights;
+        const extBtn = document.getElementById("demo-modal-external");
+        if (item.url && item.url.trim() !== "") {
+            extBtn.href = item.url;
+            extBtn.classList.remove("hidden");
+        } else {
+            extBtn.classList.add("hidden");
+        }
+        document.getElementById("demo-preview-modal").classList.add("active");
+    }
+
+    function closeDemoPreview(e) {
+        if (e && e.target !== document.getElementById("demo-preview-modal")) return;
+        document.getElementById("demo-preview-modal").classList.remove("active");
+    }
+
+    // =========================================================
+    // 5. BRIEF FORM GENERATOR & COPY
+    // =========================================================
+    function generateAndCopyBrief() {
+        const brand = document.getElementById("brief-brand").value.trim() || "(ยังไม่ระบุ)";
+        const pkgRadio = document.querySelector('input[name="brief-pkg"]:checked');
+        let pkgText = pkgRadio ? pkgRadio.value : "(ยังไม่เลือก)";
+
+        if (pkgText === "มินิแพ็กเกจ") {
+            const subs = Array.from(document.querySelectorAll('input[name="brief-mini-sub"]:checked')).map(cb => cb.value);
+            pkgText = subs.length ? `มินิแพ็กเกจ: ${subs.join(", ")}` : "มินิแพ็กเกจ (ยังไม่ระบุหมวดย่อย)";
+        }
+
+        const addons = document.getElementById("brief-addons").value.trim() || "ไม่มี";
+        const theme = document.getElementById("brief-theme").value.trim() || "(ตามความเหมาะสม)";
+        const content = document.getElementById("brief-content").value.trim() || "(จะส่งรายละเอียดเพิ่มเติมในแชต)";
+        const features = document.getElementById("brief-features").value.trim() || "ไม่มี";
+        const rushRadio = document.querySelector('input[name="brief-rush"]:checked');
+        const rushText = rushRadio ? rushRadio.value : "ไม่ด่วน";
+        const notes = document.getElementById("brief-notes").value.trim() || "ไม่มี";
+
+        const output = [
+            `✦ แบบฟอร์มบรีฟงานเว็บไซต์ — ${siteData.profile.storeName} ✦`,
+            `1. ชื่อร้าน / แบรนด์: ${brand}`,
+            `2. แพ็กเกจที่สนใจ: ${pkgText}`,
+            `3. บริการเสริม / แอดออน: ${addons}`,
+            `4. โทนสีหลัก / บรรยากาศ: ${theme}`,
+            `5. ข้อมูลและรายการที่จะลง:\n${content}`,
+            `6. ลูกเล่น / ฟีเจอร์เพิ่มเติม: ${features}`,
+            `7. คิวงานด่วน: ${rushText}`,
+            `8. หมายเหตุ / ลิงก์อ้างอิง: ${notes}`
+        ].join("\n\n");
+
+        navigator.clipboard.writeText(output).then(() => {
+            const btnText = document.getElementById("copy-brief-btn-text");
+            btnText.textContent = "คัดลอกบรีฟเรียบร้อย! กดวางในแชตได้เลย ✓";
+            setTimeout(() => { btnText.textContent = "สรุปและคัดลอกบรีฟส่งเข้าแชต"; }, 3000);
+        });
+    }
+
+    // =========================================================
+    // 6. SELF-ADMIN PANEL (LOGIN + EDIT + BACKUP/RESET)
+    // =========================================================
+    let isAdminLoggedIn = false;
+    let tempPortfolio = [];
+
+    function openAdminModal() {
+        document.getElementById("admin-modal").classList.add("active");
+        if (isAdminLoggedIn) {
+            showAdminDashboard();
+        } else {
+            document.getElementById("admin-login-view").classList.remove("hidden");
+            document.getElementById("admin-dashboard-view").classList.add("hidden");
+            document.getElementById("admin-save-bar").classList.add("hidden");
+        }
+    }
+
+    function closeAdminModal(e) {
+        if (e && e.target !== document.getElementById("admin-modal")) return;
+        document.getElementById("admin-modal").classList.remove("active");
+    }
+
+    function handleAdminLogin() {
+        const u = document.getElementById("admin-user-input").value.trim();
+        const p = document.getElementById("admin-pass-input").value.trim();
+        const err = document.getElementById("admin-login-error");
+
+        if (u === ADMIN_CREDENTIALS.username && p === ADMIN_CREDENTIALS.password) {
+            isAdminLoggedIn = true;
+            err.classList.add("hidden");
+            showAdminDashboard();
+        } else {
+            err.classList.remove("hidden");
+        }
+    }
+
+    function logoutAdmin() {
+        isAdminLoggedIn = false;
+        document.getElementById("admin-user-input").value = "";
+        document.getElementById("admin-pass-input").value = "";
+        closeAdminModal();
+    }
+
+    function showAdminDashboard() {
+        document.getElementById("admin-login-view").classList.add("hidden");
+        document.getElementById("admin-dashboard-view").classList.remove("hidden");
+        document.getElementById("admin-save-bar").classList.remove("hidden");
+
+        // Populate inputs
+        document.getElementById("edit-queue-type").value = siteData.queue.type;
+        document.getElementById("edit-queue-status").value = siteData.queue.status;
+        document.getElementById("edit-queue-slots").value = siteData.queue.slots;
+        document.getElementById("edit-queue-delivery").value = siteData.queue.delivery;
+        document.getElementById("edit-queue-announcement").value = siteData.queue.announcement;
+
+        document.getElementById("edit-store-name").value = siteData.profile.storeName;
+        document.getElementById("edit-slogan").value = siteData.profile.slogan;
+        document.getElementById("edit-logo-url").value = siteData.profile.logoUrl;
+        document.getElementById("edit-bio").value = siteData.profile.bio;
+        document.getElementById("edit-line-url").value = siteData.profile.lineUrl;
+        document.getElementById("edit-fb-name").value = siteData.profile.fbName;
+        document.getElementById("edit-fb-url").value = siteData.profile.fbUrl;
+
+        const pr = siteData.pricing;
+        document.getElementById("edit-p-basic").value = pr.main.basic;
+        document.getElementById("edit-p-standard").value = pr.main.standard;
+        document.getElementById("edit-p-pro").value = pr.main.pro;
+
+        document.getElementById("edit-am-admin").value = pr.mainAddons.admin;
+        document.getElementById("edit-am-items").value = pr.mainAddons.items;
+        document.getElementById("edit-am-inter").value = pr.mainAddons.interactive;
+        document.getElementById("edit-am-rush").value = pr.mainAddons.rush;
+        document.getElementById("edit-am-edit").value = pr.mainAddons.edit;
+        document.getElementById("edit-am-copy").value = pr.mainAddons.copywriting;
+
+        document.getElementById("edit-pm-contact").value = pr.mini.contact;
+        document.getElementById("edit-pm-payment").value = pr.mini.payment;
+        document.getElementById("edit-pm-review").value = pr.mini.review;
+
+        document.getElementById("edit-ami-copy").value = pr.miniAddons.copyBtn;
+        document.getElementById("edit-ami-rush").value = pr.miniAddons.rush;
+        document.getElementById("edit-ami-edit").value = pr.miniAddons.edit;
+        document.getElementById("edit-ami-link").value = pr.miniAddons.multiPage;
+
+        tempPortfolio = JSON.parse(JSON.stringify(siteData.portfolio));
+        renderAdminPortfolioList();
+    }
+
+    function switchAdminTab(tabName) {
+        document.querySelectorAll(".admin-panel").forEach(p => p.classList.add("hidden"));
+        document.getElementById(`admin-panel-${tabName}`).classList.remove("hidden");
+
+        document.querySelectorAll(".admin-tab-btn").forEach(b => {
+            b.className = "admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-medium bg-white/5 text-white/75 hover:text-white";
+        });
+        document.getElementById(`admintab-${tabName}`).className = "admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-medium bg-accent-primary text-white";
+    }
+
+    function applyQueuePreset(presetKey) {
+        const preset = QUEUE_PRESETS[presetKey];
+        if (!preset) return;
+        document.getElementById("edit-queue-type").value = preset.type;
+        document.getElementById("edit-queue-status").value = preset.status;
+        document.getElementById("edit-queue-slots").value = preset.slots;
+        document.getElementById("edit-queue-delivery").value = preset.delivery;
+        document.getElementById("edit-queue-announcement").value = preset.announcement;
+    }
+
+    function renderAdminPortfolioList() {
+        const container = document.getElementById("admin-portfolio-list");
+        container.innerHTML = tempPortfolio.map((item, idx) => `
+            <div class="bg-black/50 p-4 rounded-2xl border border-white/10 space-y-2.5">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-medium text-accent-orange">ผลงานที่ #${idx + 1}</span>
+                    <button type="button" onclick="removeAdminPortfolioItem(${idx})" class="text-xs text-rose-400 hover:text-rose-300">ลบรายการนี้</button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <input type="text" value="${escapeHtml(item.tag)}" onchange="tempPortfolio[${idx}].tag=this.value" placeholder="ป้ายหมวดหมู่ (เช่น ตัวอย่างแนวร้านค้า)" class="bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-xs text-white">
+                    <input type="text" value="${escapeHtml(item.title)}" onchange="tempPortfolio[${idx}].title=this.value" placeholder="ชื่อผลงาน" class="bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <textarea rows="2" onchange="tempPortfolio[${idx}].desc=this.value" placeholder="คำอธิบายจุดเด่น" class="w-full bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-xs text-white">${escapeHtml(item.desc)}</textarea>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <input type="text" value="${escapeHtml(item.highlights)}" onchange="tempPortfolio[${idx}].highlights=this.value" placeholder="ไฮไลต์สั้นๆ" class="bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-xs text-white">
+                    <input type="text" value="${escapeHtml(item.url)}" onchange="tempPortfolio[${idx}].url=this.value" placeholder="ลิงก์เว็บตัวอย่างจริง (เว้นว่างได้)" class="bg-black/70 border border-white/15 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+            </div>
+        `).join("");
+    }
+
+    function addAdminPortfolioItem() {
+        tempPortfolio.push({
+            id: "demo-" + Date.now(),
+            tag: "ผลงานใหม่",
+            title: "ชื่อเว็บไซต์ตัวอย่าง",
+            desc: "คำอธิบายจุดเด่นของเว็บไซต์นี้",
+            highlights: "รองรับมือถือ • ดีไซน์เฉพาะร้าน",
+            url: ""
+        });
+        renderAdminPortfolioList();
+    }
+
+    function removeAdminPortfolioItem(idx) {
+        tempPortfolio.splice(idx, 1);
+        renderAdminPortfolioList();
+    }
+
+    function saveAdminChanges() {
+        siteData.queue = {
+            type: document.getElementById("edit-queue-type").value,
+            status: document.getElementById("edit-queue-status").value,
+            slots: document.getElementById("edit-queue-slots").value,
+            delivery: document.getElementById("edit-queue-delivery").value,
+            announcement: document.getElementById("edit-queue-announcement").value
+        };
+
+        siteData.profile = {
+            storeName: document.getElementById("edit-store-name").value,
+            slogan: document.getElementById("edit-slogan").value,
+            logoUrl: document.getElementById("edit-logo-url").value,
+            bio: document.getElementById("edit-bio").value,
+            lineUrl: document.getElementById("edit-line-url").value,
+            fbName: document.getElementById("edit-fb-name").value,
+            fbUrl: document.getElementById("edit-fb-url").value
+        };
+
+        siteData.pricing = {
+            main: {
+                basic: Number(document.getElementById("edit-p-basic").value) || 0,
+                standard: Number(document.getElementById("edit-p-standard").value) || 0,
+                pro: Number(document.getElementById("edit-p-pro").value) || 0
+            },
+            mainAddons: {
+                admin: Number(document.getElementById("edit-am-admin").value) || 0,
+                items: Number(document.getElementById("edit-am-items").value) || 0,
+                interactive: Number(document.getElementById("edit-am-inter").value) || 0,
+                rush: Number(document.getElementById("edit-am-rush").value) || 0,
+                edit: Number(document.getElementById("edit-am-edit").value) || 0,
+                copywriting: Number(document.getElementById("edit-am-copy").value) || 0
+            },
+            mini: {
+                contact: Number(document.getElementById("edit-pm-contact").value) || 0,
+                payment: Number(document.getElementById("edit-pm-payment").value) || 0,
+                review: Number(document.getElementById("edit-pm-review").value) || 0
+            },
+            miniAddons: {
+                copyBtn: Number(document.getElementById("edit-ami-copy").value) || 0,
+                rush: Number(document.getElementById("edit-ami-rush").value) || 0,
+                edit: Number(document.getElementById("edit-ami-edit").value) || 0,
+                multiPage: Number(document.getElementById("edit-ami-link").value) || 0
+            }
+        };
+
+        siteData.portfolio = JSON.parse(JSON.stringify(tempPortfolio));
+
+        saveSiteDataToStorage();
+        renderAllSite();
+
+        const msg = document.getElementById("admin-save-msg");
+        msg.classList.remove("hidden");
+        setTimeout(() => msg.classList.add("hidden"), 2500);
+    }
+
+    function exportConfigJSON() {
+        document.getElementById("backup-json-box").value = JSON.stringify(siteData, null, 2);
+    }
+
+    function importConfigJSON() {
+        try {
+            const raw = document.getElementById("backup-json-box").value.trim();
+            if (!raw) return alert("กรุณาวางโค้ด JSON ก่อนกดนำเข้าค่ะ");
+            const parsed = JSON.parse(raw);
+            siteData = parsed;
+            saveSiteDataToStorage();
+            renderAllSite();
+            showAdminDashboard();
+            alert("นำเข้าข้อมูลสำเร็จเรียบร้อยแล้วค่ะ!");
+        } catch (e) {
+            alert("รูปแบบโค้ด JSON ไม่ถูกต้อง กรุณาตรวจสอบอีกครั้งค่ะ");
+        }
+    }
+
+    function resetToDefaultConfig() {
+        if (!confirm("ยืนยันการรีเซ็ตข้อมูลทั้งหมดกลับเป็นค่าเริ่มต้นใช่ไหมคะ?")) return;
+        localStorage.removeItem(STORAGE_KEY);
+        siteData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+        renderAllSite();
+        showAdminDashboard();
+        alert("รีเซ็ตข้อมูลเรียบร้อยแล้วค่ะ");
+    }
+
+    function escapeHtml(str) {
+        if (!str) return "";
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+    }
+
+    // Initialize Site
+    renderAllSite();
+</script>
+</body>
+</html>
